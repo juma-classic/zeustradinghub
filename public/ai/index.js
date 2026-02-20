@@ -336,7 +336,7 @@ function startBasicWebSocket() {
     updateConnectionStatusMessage('Connecting (Basic)...');
     
     try {
-        derivWs = new WebSocket('wss://ws.binaryws.com/websockets/v3?app_id=115423');
+        derivWs = new WebSocket('wss://ws.binaryws.com/websockets/v3?app_id=110800');
 
         derivWs.onopen = function () {
             console.log('✅ Basic WebSocket connected');

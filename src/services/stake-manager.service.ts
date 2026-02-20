@@ -12,7 +12,7 @@ export interface StakeSettings {
 
 class StakeManagerService {
     private static instance: StakeManagerService;
-    private readonly STORAGE_KEY = 'mozaic_trading_hub_stake_settings';
+    private readonly STORAGE_KEY = 'zeus_trading_hub_stake_settings';
     private readonly DEFAULT_STAKE = 0.42;
     private readonly DEFAULT_MARTINGALE = 2.0;
 

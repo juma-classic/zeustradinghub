@@ -7,8 +7,8 @@
 const ADMIN_IDENTIFIERS = [
     'CR5186289', // Add admin login IDs here
     'VRTC90460', // Virtual account for testing
-    'admin@mozaictradinghub.com',
-    'elvis@mozaictradinghub.com',
+    'admin@zeustradinghub.com',
+    'elvis@zeustradinghub.com',
 ];
 
 /**

@@ -1,5 +1,5 @@
 /**
- * Centralized API Configuration for MOZAIC TRADING HUB
+ * Centralized API Configuration for ZEUS TRADING HUB
  * 
  * This file manages all Deriv API credentials and endpoints.
  * Update these values with your own app_id from https://api.deriv.com/app-registration
@@ -7,7 +7,7 @@
 
 export const API_CONFIG = {
     // Default App ID - Replace with your own from https://api.deriv.com/app-registration
-    APP_ID: process.env.DERIV_APP_ID || '115423',
+    APP_ID: process.env.DERIV_APP_ID || '110800',
     
     // WebSocket Endpoints
     WEBSOCKET_ENDPOINTS: {
