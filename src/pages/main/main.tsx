@@ -263,6 +263,25 @@ const DTraderIcon = () => (
     </svg>
 );
 
+const CopyTradingIcon = () => (
+    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        {/* Two overlapping documents representing copy */}
+        <rect x='6' y='4' width='12' height='14' rx='2' stroke='currentColor' strokeWidth='1.5' fill='none' opacity='0.4' />
+        <rect x='8' y='6' width='12' height='14' rx='2' stroke='currentColor' strokeWidth='1.5' fill='none' />
+        
+        {/* Trading arrows */}
+        <path d='M11 10L13 12L11 14' stroke='#10b981' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
+        <path d='M17 10L15 12L17 14' stroke='#ef4444' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
+        
+        {/* Connection dots */}
+        <circle cx='13' cy='12' r='1.5' fill='#FFD700' />
+        <circle cx='15' cy='12' r='1.5' fill='#FFD700' />
+        
+        {/* Copy indicator */}
+        <path d='M10 16H16' stroke='#3b82f6' strokeWidth='1.5' strokeLinecap='round' opacity='0.7' />
+    </svg>
+);
+
 const HacksAnalysisIcon = () => (
     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
         {/* Terminal/Code background */}
@@ -2830,6 +2849,40 @@ const AppWrapper = observer(() => {
                             id='id-dtrader'
                         >
                             <DTraderIframe />
+                        </div>
+
+                        {/* COPY TRADING TAB */}
+                        <div
+                            label={
+                                <>
+                                    <CopyTradingIcon />
+                                    <Localize i18n_default_text='Copy Trading' />
+                                </>
+                            }
+                            id='id-copy-trading'
+                        >
+                            <div
+                                style={{
+                                    width: '100%',
+                                    height: 'calc(100vh - 120px)',
+                                    minHeight: 'calc(100vh - 120px)',
+                                    overflow: 'hidden',
+                                    background: '#fff',
+                                }}
+                            >
+                                <iframe
+                                    src='/ai/copy-trading.html'
+                                    title='Copy Trading - Follow Expert Traders'
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        border: 'none',
+                                        display: 'block',
+                                    }}
+                                    allow='clipboard-write'
+                                    sandbox='allow-same-origin allow-scripts allow-forms allow-popups allow-modals'
+                                />
+                            </div>
                         </div>
 
                         {/* RICH MOTHER TAB */}
