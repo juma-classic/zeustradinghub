@@ -34,6 +34,9 @@ import TradingCalculator from '@/components/tracktool/TradingCalculator';
 // DCircles Component
 import { DCircles } from '@/components/dcircles/DCircles';
 
+// DTrader Component
+import DTraderIframe from '@/components/dtrader/DTraderIframe';
+
 const DashboardIcon = () => (
     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
         <path d='M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z' fill='currentColor' />
@@ -235,6 +238,28 @@ const TrackCalculatorIcon = () => (
         {/* Sparkle effect */}
         <circle cx='17' cy='6' r='0.8' fill='#ffd700' opacity='0.8' />
         <circle cx='19' cy='8' r='0.6' fill='#ffd700' opacity='0.6' />
+    </svg>
+);
+
+const DTraderIcon = () => (
+    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        {/* Trading chart candlesticks */}
+        <rect x='4' y='8' width='2' height='8' rx='0.5' fill='#10b981' opacity='0.8' />
+        <rect x='9' y='6' width='2' height='10' rx='0.5' fill='#ef4444' opacity='0.8' />
+        <rect x='14' y='10' width='2' height='6' rx='0.5' fill='#10b981' opacity='0.8' />
+        <rect x='19' y='4' width='2' height='12' rx='0.5' fill='#10b981' opacity='0.8' />
+        
+        {/* Trend line */}
+        <path d='M3 18L7 14L12 16L17 12L21 8' stroke='#FFD700' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' opacity='0.9' />
+        
+        {/* Data points on trend */}
+        <circle cx='7' cy='14' r='1.5' fill='#FFD700' />
+        <circle cx='12' cy='16' r='1.5' fill='#FFD700' />
+        <circle cx='17' cy='12' r='1.5' fill='#FFD700' />
+        <circle cx='21' cy='8' r='1.5' fill='#FFD700' />
+        
+        {/* Grid */}
+        <path d='M2 20H22M2 15H22M2 10H22M2 5H22' stroke='currentColor' strokeWidth='0.5' opacity='0.2' />
     </svg>
 );
 
@@ -2792,6 +2817,19 @@ const AppWrapper = observer(() => {
                             id='id-track-calculator'
                         >
                             <TradingCalculator />
+                        </div>
+
+                        {/* DTRADER TAB */}
+                        <div
+                            label={
+                                <>
+                                    <DTraderIcon />
+                                    <Localize i18n_default_text='DTrader' />
+                                </>
+                            }
+                            id='id-dtrader'
+                        >
+                            <DTraderIframe />
                         </div>
 
                         {/* RICH MOTHER TAB */}
