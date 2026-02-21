@@ -166,11 +166,15 @@
 }
 
 // Enhanced Modern Navigation Tabs with White Background, Maroon Buttons, Yellow Text
+// Zeus Trading Hub - God of Thunder Theme for Navigation Tabs
 .dc-tabs--enhanced {
-    background: #fff;
-    box-shadow: 0 4px 20px rgb(0 0 0 / 10%);
-    border-bottom: 3px solid #f0f0f0;
+    background: #ffffff;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.1),
+        0 0 40px rgba(255, 215, 0, 0.05);
+    border-bottom: 2px solid rgba(255, 215, 0, 0.1);
     position: relative;
+    overflow: hidden;
 
     // Subtle overlay
     &:before {
@@ -180,8 +184,22 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(180deg, rgb(128 0 0 / 2%) 0%, transparent 100%);
+        background: linear-gradient(180deg, rgba(255, 215, 0, 0.02) 0%, transparent 100%);
         pointer-events: none;
+    }
+
+    // Lightning flash effect (subtle)
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.05), transparent);
+        animation: lightningFlash 8s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
     }
 
     .dc-tabs__list {
@@ -189,6 +207,8 @@
         gap: 0.5rem;
         justify-content: center;
         border-bottom: none;
+        position: relative;
+        z-index: 1;
     }
 
     .dc-tabs__item {
@@ -197,75 +217,127 @@
         align-items: center;
         gap: 0.75rem;
         padding: 1rem 1.5rem !important;
-        background: linear-gradient(135deg, #800000 0%, #a52a2a 100%);
-        border: 2px solid transparent;
+        // Zeus storm background on buttons
+        background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
+        border: 2px solid rgba(255, 215, 0, 0.3);
         border-radius: 12px;
-        color: #fff !important;
+        color: rgba(255, 255, 255, 0.85) !important;
         font-size: 11px;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         user-select: none;
         line-height: 1.2;
-        box-shadow: 0 2px 8px rgb(128 0 0 / 20%);
+        box-shadow: 
+            0 2px 8px rgba(0, 0, 0, 0.3),
+            0 0 15px rgba(255, 215, 0, 0.1);
+        overflow: hidden;
 
-        // Ensure all text is white
-        span,
-        div {
-            color: #fff !important;
+        // Electric glow effect base
+        &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            pointer-events: none;
         }
 
-        // Icon styling
+        // Ensure all text is white/gold
+        span,
+        div {
+            color: rgba(255, 255, 255, 0.85) !important;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+
+        // Icon styling with Zeus theme
         svg {
             width: 24px;
             height: 24px;
             transition: all 0.3s ease;
-            filter: drop-shadow(0 2px 4px rgb(0 0 0 / 20%));
-            color: #fff !important;
+            filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
+            color: #FFD700 !important;
         }
 
-        // Hover state
+        // Hover state - Electric charge
         &:hover:not(&--active) {
-            background: linear-gradient(135deg, #a52a2a 0%, #c04040 100%);
-            border-color: rgb(255 255 255 / 30%);
-            color: #fff;
+            background: linear-gradient(135deg, #1a1f3a 0%, #2a2f4a 50%, #1f2439 100%);
+            border-color: rgba(255, 215, 0, 0.5);
+            color: #FFD700 !important;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgb(128 0 0 / 40%);
+            box-shadow: 
+                0 6px 20px rgba(255, 215, 0, 0.2),
+                0 0 30px rgba(255, 215, 0, 0.15);
+
+            &:before {
+                width: 200%;
+                height: 200%;
+            }
+
+            span,
+            div {
+                color: #FFD700 !important;
+                text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            }
 
             svg {
                 transform: scale(1.1);
-                filter: drop-shadow(0 4px 8px rgb(255 255 255 / 30%));
+                filter: drop-shadow(0 4px 8px rgba(255, 215, 0, 0.5));
+                color: #FFD700 !important;
             }
         }
 
-        // Active state with glow effect
+        // Active state - Zeus's divine power
         &--active {
-            background: linear-gradient(135deg, #600000 0%, #800000 100%) !important;
-            border-color: #ffd700;
-            color: #fff !important;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%) !important;
+            border-color: #FFD700 !important;
+            color: #000000 !important;
             box-shadow:
-                0 8px 24px rgb(128 0 0 / 50%),
-                0 0 40px rgb(255 215 0 / 30%),
-                inset 0 1px 0 rgb(255 215 0 / 20%);
+                0 8px 24px rgba(255, 215, 0, 0.4),
+                0 0 40px rgba(255, 215, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
             transform: translateY(-3px);
+
+            span,
+            div {
+                color: #000000 !important;
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+                font-weight: 700;
+            }
 
             svg {
                 transform: scale(1.15);
-                filter: drop-shadow(0 4px 12px rgb(255 215 0 / 50%));
+                filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.5));
+                color: #000000 !important;
+                animation: iconGlow 2s ease-in-out infinite;
             }
 
-            // Active indicator line
+            // Active indicator - Lightning bolt effect
             &:after {
                 content: '';
                 position: absolute;
-                bottom: -3px;
+                bottom: -2px;
                 left: 50%;
                 transform: translateX(-50%);
                 width: 60%;
-                height: 3px;
-                background: linear-gradient(90deg, transparent, #ffd700, transparent);
+                height: 2px;
+                background: linear-gradient(90deg, transparent, #FFD700, #FFA500, #FFD700, transparent);
                 border-radius: 2px 2px 0 0;
                 animation: glow-line 2s ease-in-out infinite;
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            }
+
+            // Electric particles
+            &:before {
+                width: 150%;
+                height: 150%;
+                background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+                animation: electricPulse 3s ease-in-out infinite;
             }
         }
 
@@ -275,7 +347,7 @@
         }
     }
 
-    // Badge for notifications
+    // Badge for notifications (lightning themed)
     .tab-badge {
         position: absolute;
         top: 0.5rem;
@@ -283,15 +355,15 @@
         min-width: 20px;
         height: 20px;
         padding: 0 6px;
-        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
         border-radius: 10px;
-        color: #fff;
+        color: #000;
         font-size: 0.7rem;
         font-weight: 700;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 2px 8px rgb(255 107 107 / 40%);
+        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.6);
         animation: pulse-badge 2s infinite;
     }
 
@@ -343,17 +415,17 @@
     }
 }
 
-// Animations
+// Zeus Theme Animations
 @keyframes pulse-badge {
     0%,
     100% {
         transform: scale(1);
-        box-shadow: 0 2px 8px rgb(255 107 107 / 40%);
+        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.6);
     }
 
     50% {
         transform: scale(1.1);
-        box-shadow: 0 4px 16px rgb(255 107 107 / 60%);
+        box-shadow: 0 4px 16px rgba(255, 215, 0, 0.8);
     }
 }
 
@@ -361,11 +433,50 @@
     0%,
     100% {
         opacity: 0.6;
-        box-shadow: 0 0 10px rgb(255 215 0 / 50%);
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     }
 
     50% {
         opacity: 1;
-        box-shadow: 0 0 20px rgb(255 215 0 / 80%);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.9);
+    }
+}
+
+@keyframes iconGlow {
+    0%, 100% {
+        filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.5));
+    }
+
+    50% {
+        filter: drop-shadow(0 4px 16px rgba(255, 255, 255, 0.8));
+    }
+}
+
+@keyframes electricPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+@keyframes lightningFlash {
+    0%, 90%, 100% {
+        left: -100%;
+        opacity: 0;
+    }
+
+    92% {
+        left: 0%;
+        opacity: 1;
+    }
+
+    94% {
+        left: 100%;
+        opacity: 0;
     }
 }
