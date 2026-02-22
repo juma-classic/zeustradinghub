@@ -405,27 +405,72 @@
                 }
 
                 getMasterToken() {
-                    // Try to get from localStorage (set by main app)
+                    // Try multiple token sources
                     const token = localStorage.getItem('active_loginid_token') || 
-                                  localStorage.getItem('deriv_token');
+                                  localStorage.getItem('deriv_token') ||
+                                  this.getTokenFromCookies();
                     
-                    if (token) {
+                    if (token && token.length > 10) {
                         this.masterToken = token;
+                        console.log('✅ Master token found, connecting...');
                         this.connectMaster();
                     } else {
-                        console.warn('No master token found. Please login first.');
+                        console.warn('⚠️ No master token found. Please login to Deriv first.');
+                        this.updateConnectionStatus(false);
+                        this.showError('Please login to your Deriv account first');
                     }
                 }
 
+                getTokenFromCookies() {
+                    // Try to get token from cookies as fallback
+                    const cookies = document.cookie.split(';');
+                    for (let cookie of cookies) {
+                        const [name, value] = cookie.trim().split('=');
+                        if (name === 'deriv_token' || name === 'token') {
+                            return value;
+                        }
+                    }
+                    return null;
+                }
+
                 async connectMaster() {
-                    if (!this.masterToken) return;
+                    if (!this.masterToken) {
+                        console.error('❌ Cannot connect: No master token');
+                        return;
+                    }
                     
                     try {
+                        console.log('🔌 Connecting to Deriv WebSocket...');
                         await this.wsManager.connect();
+                        
+                        // Wait for connection to be established
+                        await new Promise((resolve) => {
+                            const checkConnection = setInterval(() => {
+                                if (this.wsManager.isConnected) {
+                                    clearInterval(checkConnection);
+                                    resolve();
+                                }
+                            }, 100);
+                            
+                            // Timeout after 10 seconds
+                            setTimeout(() => {
+                                clearInterval(checkConnection);
+                                resolve();
+                            }, 10000);
+                        });
+                        
+                        if (!this.wsManager.isConnected) {
+                            throw new Error('Connection timeout');
+                        }
+                        
+                        console.log('🔐 Authorizing with token...');
                         await this.authorize(this.wsManager, this.masterToken);
+                        console.log('✅ Authorization successful');
+                        
                     } catch (error) {
-                        console.error('Failed to connect master:', error);
-                        this.showError('Failed to connect to Deriv API');
+                        console.error('❌ Failed to connect master:', error);
+                        this.showError('Failed to connect to Deriv API: ' + error.message);
+                        this.updateConnectionStatus(false);
                     }
                 }
 
@@ -433,18 +478,30 @@
                     return new Promise((resolve, reject) => {
                         const authMsg = { authorize: token };
                         
+                        let timeoutId;
                         const authCallback = (msg) => {
                             if (msg.authorize) {
+                                clearTimeout(timeoutId);
+                                console.log('✅ Authorization successful:', msg.authorize.loginid);
                                 resolve(msg.authorize);
                             } else if (msg.error) {
-                                reject(msg.error);
+                                clearTimeout(timeoutId);
+                                console.error('❌ Authorization failed:', msg.error.message);
+                                reject(new Error(msg.error.message));
                             }
                         };
+                        
+                        // Set timeout for authorization
+                        timeoutId = setTimeout(() => {
+                            reject(new Error('Authorization timeout'));
+                        }, 10000);
                         
                         const originalCallback = wsManager.onMessageCallback;
                         wsManager.onMessageCallback = (msg) => {
                             authCallback(msg);
-                            wsManager.onMessageCallback = originalCallback;
+                            if (msg.authorize || msg.error) {
+                                wsManager.onMessageCallback = originalCallback;
+                            }
                         };
                         
                         wsManager.send(authMsg);
@@ -662,6 +719,24 @@
 
                 // Copy Trading Controls
                 toggleCopyTrading() {
+                    // Check if connected
+                    if (!this.wsManager.isConnected) {
+                        this.showError('Not connected to Deriv API. Please wait or refresh the page.');
+                        return;
+                    }
+                    
+                    // Check if authorized
+                    if (!this.masterToken) {
+                        this.showError('Please login to your Deriv account first');
+                        return;
+                    }
+                    
+                    // Check if there are follower tokens
+                    if (this.followerTokens.length === 0) {
+                        this.showError('Please add at least one follower token first');
+                        return;
+                    }
+                    
                     this.isCopyTradingActive = !this.isCopyTradingActive;
                     
                     const btn = document.getElementById('copy-trading-btn');
@@ -671,6 +746,8 @@
                         btn.textContent = 'Stop Copy Trading';
                         btn.className = 'copy-trading-btn stop';
                         message.textContent = `✅ Copy trading started for ${this.followerTokens.length} followers!`;
+                        message.style.background = 'rgba(16, 185, 129, 0.1)';
+                        message.style.color = '#10b981';
                         
                         // Start monitoring master account trades
                         this.startMonitoring();
@@ -678,6 +755,8 @@
                         btn.textContent = 'Start Copy Trading';
                         btn.className = 'copy-trading-btn start';
                         message.textContent = `⏹️ Copy trading stopped for ${this.followerTokens.length} followers!`;
+                        message.style.background = 'rgba(239, 68, 68, 0.1)';
+                        message.style.color = '#ef4444';
                         
                         // Stop monitoring
                         this.stopMonitoring();
@@ -690,16 +769,47 @@
                 }
 
                 startMonitoring() {
+                    if (!this.wsManager.isConnected) {
+                        console.warn('⚠️ Cannot start monitoring: Not connected');
+                        this.showError('Please wait for connection to establish');
+                        return;
+                    }
+                    
+                    if (!this.masterToken) {
+                        console.warn('⚠️ Cannot start monitoring: Not authorized');
+                        this.showError('Please login to your Deriv account first');
+                        return;
+                    }
+                    
+                    console.log('👁️ Starting trade monitoring...');
+                    
                     // Subscribe to portfolio to monitor all open positions
-                    if (this.wsManager.isConnected) {
-                        this.wsManager.send({ portfolio: 1, subscribe: 1 });
+                    try {
+                        this.wsManager.send({ 
+                            portfolio: 1, 
+                            subscribe: 1 
+                        });
+                        console.log('✅ Portfolio monitoring started');
+                    } catch (error) {
+                        console.error('❌ Failed to start monitoring:', error);
+                        this.showError('Failed to start trade monitoring');
                     }
                 }
 
                 stopMonitoring() {
+                    if (!this.wsManager.isConnected) {
+                        console.log('⚠️ Not connected, nothing to stop');
+                        return;
+                    }
+                    
+                    console.log('🛑 Stopping trade monitoring...');
+                    
                     // Unsubscribe from portfolio
-                    if (this.wsManager.isConnected) {
+                    try {
                         this.wsManager.send({ forget_all: 'portfolio' });
+                        console.log('✅ Portfolio monitoring stopped');
+                    } catch (error) {
+                        console.error('❌ Failed to stop monitoring:', error);
                     }
                 }
 
