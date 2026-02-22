@@ -1876,6 +1876,47 @@ const AppWrapper = observer(() => {
         };
     }, [setActiveTab]);
 
+    // Listen for token requests from Copy Trading iframe
+    useEffect(() => {
+        const handleTokenRequest = (event: MessageEvent) => {
+            // Security check - only respond to messages from same origin
+            if (event.origin !== window.location.origin) return;
+            
+            if (event.data.type === 'REQUEST_TOKEN') {
+                console.log('📤 Copy Trading iframe requesting token...');
+                
+                // Get token from localStorage (same as DTrader)
+                const authToken = localStorage.getItem('authToken');
+                const activeLoginId = localStorage.getItem('active_loginid');
+                
+                if (authToken && activeLoginId) {
+                    console.log('✅ Sending token to Copy Trading iframe');
+                    
+                    // Find the Copy Trading iframe
+                    const copyTradingIframe = document.querySelector('iframe[src="/ai/copy-trading.html"]') as HTMLIFrameElement;
+                    
+                    if (copyTradingIframe && copyTradingIframe.contentWindow) {
+                        copyTradingIframe.contentWindow.postMessage(
+                            {
+                                type: 'INJECT_TOKEN',
+                                token: authToken,
+                                loginId: activeLoginId
+                            },
+                            window.location.origin
+                        );
+                    }
+                } else {
+                    console.warn('⚠️ No auth token found to send to Copy Trading iframe');
+                }
+            }
+        };
+        
+        window.addEventListener('message', handleTokenRequest);
+        return () => {
+            window.removeEventListener('message', handleTokenRequest);
+        };
+    }, []);
+
     const showRunPanel = [
         DBOT_TABS.BOT_BUILDER,
         DBOT_TABS.CHART,

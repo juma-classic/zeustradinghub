@@ -400,8 +400,31 @@
                     // Load saved tokens
                     this.loadTokens();
                     
-                    // Try to get master token from parent window or localStorage
-                    this.getMasterToken();
+                    // Listen for token from parent window (same as DTrader)
+                    window.addEventListener('message', (event) => {
+                        // Security check - only accept messages from same origin
+                        if (event.origin !== window.location.origin) return;
+                        
+                        if (event.data.type === 'INJECT_TOKEN') {
+                            console.log('✅ Received token from parent window');
+                            this.masterToken = event.data.token;
+                            this.connectMaster();
+                        }
+                    });
+                    
+                    // Request token from parent window
+                    if (window.parent !== window) {
+                        console.log('📤 Requesting token from parent window...');
+                        window.parent.postMessage({ type: 'REQUEST_TOKEN' }, window.location.origin);
+                    }
+                    
+                    // Also try to get master token from localStorage as fallback
+                    setTimeout(() => {
+                        if (!this.masterToken) {
+                            console.log('⏱️ No token received from parent, trying localStorage...');
+                            this.getMasterToken();
+                        }
+                    }, 2000);
                 }
 
                 getMasterToken() {
