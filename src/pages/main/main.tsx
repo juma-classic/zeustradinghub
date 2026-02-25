@@ -172,20 +172,26 @@ const TrackSignalsIcon = () => (
         <circle cx='12' cy='12' r='9' stroke='#00ff00' strokeWidth='1.5' fill='none' opacity='0.3' />
         <circle cx='12' cy='12' r='6' stroke='#00ff00' strokeWidth='1.5' fill='none' opacity='0.5' />
         <circle cx='12' cy='12' r='3' stroke='#00ff00' strokeWidth='2' fill='none' opacity='0.8' />
-        
+
         {/* Scanning beam */}
         <path d='M12 12L20 8' stroke='#00ff00' strokeWidth='2' strokeLinecap='round' opacity='0.9' />
-        
+
         {/* Signal dots */}
         <circle cx='16' cy='8' r='1.5' fill='#00ff00' />
         <circle cx='8' cy='16' r='1.5' fill='#ffff00' />
         <circle cx='16' cy='16' r='1.5' fill='#ff0000' />
-        
+
         {/* Center core */}
         <circle cx='12' cy='12' r='1.5' fill='#00ff00' />
-        
+
         {/* Corner indicators */}
-        <path d='M4 4L6 6M20 4L18 6M4 20L6 18M20 20L18 18' stroke='#00ff00' strokeWidth='1.5' strokeLinecap='round' opacity='0.6' />
+        <path
+            d='M4 4L6 6M20 4L18 6M4 20L6 18M20 20L18 18'
+            stroke='#00ff00'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            opacity='0.6'
+        />
     </svg>
 );
 
@@ -196,16 +202,23 @@ const TrackAnalyzerIcon = () => (
         <rect x='9' y='10' width='3' height='10' rx='0.5' fill='#10b981' opacity='0.8' />
         <rect x='14' y='6' width='3' height='14' rx='0.5' fill='#f59e0b' opacity='0.8' />
         <rect x='19' y='12' width='3' height='8' rx='0.5' fill='#ef4444' opacity='0.8' />
-        
+
         {/* Trend line */}
-        <path d='M5.5 16L10.5 12L15.5 8L20.5 14' stroke='#00ffff' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' opacity='0.7' />
-        
+        <path
+            d='M5.5 16L10.5 12L15.5 8L20.5 14'
+            stroke='#00ffff'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            opacity='0.7'
+        />
+
         {/* Data points */}
         <circle cx='5.5' cy='16' r='1.5' fill='#00ffff' />
         <circle cx='10.5' cy='12' r='1.5' fill='#00ffff' />
         <circle cx='15.5' cy='8' r='1.5' fill='#00ffff' />
         <circle cx='20.5' cy='14' r='1.5' fill='#00ffff' />
-        
+
         {/* Grid lines */}
         <path d='M3 8H22M3 12H22M3 16H22' stroke='currentColor' strokeWidth='0.5' opacity='0.2' />
     </svg>
@@ -215,26 +228,28 @@ const TrackCalculatorIcon = () => (
     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
         {/* Calculator body */}
         <rect x='5' y='3' width='14' height='18' rx='2' stroke='currentColor' strokeWidth='2' fill='none' />
-        
+
         {/* Display screen */}
         <rect x='7' y='5' width='10' height='3' rx='0.5' fill='#10b981' opacity='0.8' />
-        
+
         {/* Calculator buttons */}
         <circle cx='8.5' cy='11' r='1' fill='#3b82f6' opacity='0.7' />
         <circle cx='12' cy='11' r='1' fill='#3b82f6' opacity='0.7' />
         <circle cx='15.5' cy='11' r='1' fill='#3b82f6' opacity='0.7' />
-        
+
         <circle cx='8.5' cy='14' r='1' fill='#3b82f6' opacity='0.7' />
         <circle cx='12' cy='14' r='1' fill='#3b82f6' opacity='0.7' />
         <circle cx='15.5' cy='14' r='1' fill='#3b82f6' opacity='0.7' />
-        
+
         <circle cx='8.5' cy='17' r='1' fill='#3b82f6' opacity='0.7' />
         <circle cx='12' cy='17' r='1' fill='#3b82f6' opacity='0.7' />
         <circle cx='15.5' cy='17' r='1' fill='#f59e0b' opacity='0.9' />
-        
+
         {/* Dollar sign on display */}
-        <text x='12' y='7.5' fontSize='2' fill='#000' textAnchor='middle' fontWeight='bold'>$</text>
-        
+        <text x='12' y='7.5' fontSize='2' fill='#000' textAnchor='middle' fontWeight='bold'>
+            $
+        </text>
+
         {/* Sparkle effect */}
         <circle cx='17' cy='6' r='0.8' fill='#ffd700' opacity='0.8' />
         <circle cx='19' cy='8' r='0.6' fill='#ffd700' opacity='0.6' />
@@ -248,16 +263,23 @@ const DTraderIcon = () => (
         <rect x='9' y='6' width='2' height='10' rx='0.5' fill='#ef4444' opacity='0.8' />
         <rect x='14' y='10' width='2' height='6' rx='0.5' fill='#10b981' opacity='0.8' />
         <rect x='19' y='4' width='2' height='12' rx='0.5' fill='#10b981' opacity='0.8' />
-        
+
         {/* Trend line */}
-        <path d='M3 18L7 14L12 16L17 12L21 8' stroke='#FFD700' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' opacity='0.9' />
-        
+        <path
+            d='M3 18L7 14L12 16L17 12L21 8'
+            stroke='#FFD700'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            opacity='0.9'
+        />
+
         {/* Data points on trend */}
         <circle cx='7' cy='14' r='1.5' fill='#FFD700' />
         <circle cx='12' cy='16' r='1.5' fill='#FFD700' />
         <circle cx='17' cy='12' r='1.5' fill='#FFD700' />
         <circle cx='21' cy='8' r='1.5' fill='#FFD700' />
-        
+
         {/* Grid */}
         <path d='M2 20H22M2 15H22M2 10H22M2 5H22' stroke='currentColor' strokeWidth='0.5' opacity='0.2' />
     </svg>
@@ -266,39 +288,98 @@ const DTraderIcon = () => (
 const CopyTradingIcon = () => (
     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
         {/* Two overlapping documents representing copy */}
-        <rect x='6' y='4' width='12' height='14' rx='2' stroke='currentColor' strokeWidth='1.5' fill='none' opacity='0.4' />
+        <rect
+            x='6'
+            y='4'
+            width='12'
+            height='14'
+            rx='2'
+            stroke='currentColor'
+            strokeWidth='1.5'
+            fill='none'
+            opacity='0.4'
+        />
         <rect x='8' y='6' width='12' height='14' rx='2' stroke='currentColor' strokeWidth='1.5' fill='none' />
-        
+
         {/* Trading arrows */}
         <path d='M11 10L13 12L11 14' stroke='#10b981' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
         <path d='M17 10L15 12L17 14' stroke='#ef4444' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
-        
+
         {/* Connection dots */}
         <circle cx='13' cy='12' r='1.5' fill='#FFD700' />
         <circle cx='15' cy='12' r='1.5' fill='#FFD700' />
-        
+
         {/* Copy indicator */}
         <path d='M10 16H16' stroke='#3b82f6' strokeWidth='1.5' strokeLinecap='round' opacity='0.7' />
+    </svg>
+);
+
+const ZeusTraderIcon = () => (
+    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        {/* Lightning bolt (Zeus symbol) */}
+        <path
+            d='M13 2L3 14h8l-1 8 10-12h-8l1-8z'
+            fill='#FFD700'
+            stroke='#FFD700'
+            strokeWidth='1'
+            strokeLinejoin='round'
+        />
+
+        {/* Electric glow effect */}
+        <path
+            d='M13 2L3 14h8l-1 8 10-12h-8l1-8z'
+            fill='none'
+            stroke='#4169E1'
+            strokeWidth='2'
+            strokeLinejoin='round'
+            opacity='0.3'
+        />
+
+        {/* Trading chart line overlay */}
+        <path
+            d='M4 18l3-3 2 2 3-4 2 2 3-3'
+            stroke='currentColor'
+            strokeWidth='1.5'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            opacity='0.5'
+        />
     </svg>
 );
 
 const HacksAnalysisIcon = () => (
     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
         {/* Terminal/Code background */}
-        <rect x='2' y='3' width='20' height='18' rx='2' stroke='currentColor' strokeWidth='1.5' fill='none' opacity='0.3' />
-        
+        <rect
+            x='2'
+            y='3'
+            width='20'
+            height='18'
+            rx='2'
+            stroke='currentColor'
+            strokeWidth='1.5'
+            fill='none'
+            opacity='0.3'
+        />
+
         {/* Terminal prompt lines */}
         <path d='M5 7L8 10L5 13' stroke='#10b981' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
         <path d='M10 13H15' stroke='#10b981' strokeWidth='2' strokeLinecap='round' />
-        
+
         {/* Binary code */}
-        <text x='6' y='18' fontSize='3' fill='#3b82f6' fontFamily='monospace'>101</text>
-        <text x='14' y='18' fontSize='3' fill='#3b82f6' fontFamily='monospace'>010</text>
-        
+        <text x='6' y='18' fontSize='3' fill='#3b82f6' fontFamily='monospace'>
+            101
+        </text>
+        <text x='14' y='18' fontSize='3' fill='#3b82f6' fontFamily='monospace'>
+            010
+        </text>
+
         {/* Hacker symbol */}
         <circle cx='19' cy='6' r='2.5' fill='#ef4444' opacity='0.9' />
-        <text x='19' y='7.5' fontSize='2.5' fill='#fff' textAnchor='middle' fontWeight='bold'>H</text>
-        
+        <text x='19' y='7.5' fontSize='2.5' fill='#fff' textAnchor='middle' fontWeight='bold'>
+            H
+        </text>
+
         {/* Analysis dots */}
         <circle cx='5' cy='7' r='0.8' fill='#ffd700' />
         <circle cx='8' cy='10' r='0.8' fill='#ffd700' />
@@ -1881,26 +1962,28 @@ const AppWrapper = observer(() => {
         const handleTokenRequest = (event: MessageEvent) => {
             // Security check - only respond to messages from same origin
             if (event.origin !== window.location.origin) return;
-            
+
             if (event.data.type === 'REQUEST_TOKEN') {
                 console.log('📤 Copy Trading iframe requesting token...');
-                
+
                 // Get token from localStorage (same as DTrader)
                 const authToken = localStorage.getItem('authToken');
                 const activeLoginId = localStorage.getItem('active_loginid');
-                
+
                 if (authToken && activeLoginId) {
                     console.log('✅ Sending token to Copy Trading iframe');
-                    
+
                     // Find the Copy Trading iframe
-                    const copyTradingIframe = document.querySelector('iframe[src="/ai/copy-trading.html"]') as HTMLIFrameElement;
-                    
+                    const copyTradingIframe = document.querySelector(
+                        'iframe[src="/ai/copy-trading.html"]'
+                    ) as HTMLIFrameElement;
+
                     if (copyTradingIframe && copyTradingIframe.contentWindow) {
                         copyTradingIframe.contentWindow.postMessage(
                             {
                                 type: 'INJECT_TOKEN',
                                 token: authToken,
-                                loginId: activeLoginId
+                                loginId: activeLoginId,
                             },
                             window.location.origin
                         );
@@ -1910,7 +1993,7 @@ const AppWrapper = observer(() => {
                 }
             }
         };
-        
+
         window.addEventListener('message', handleTokenRequest);
         return () => {
             window.removeEventListener('message', handleTokenRequest);
@@ -2914,6 +2997,40 @@ const AppWrapper = observer(() => {
                                 <iframe
                                     src='/ai/copy-trading.html'
                                     title='Copy Trading - Follow Expert Traders'
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        border: 'none',
+                                        display: 'block',
+                                    }}
+                                    allow='clipboard-write'
+                                    sandbox='allow-same-origin allow-scripts allow-forms allow-popups allow-modals'
+                                />
+                            </div>
+                        </div>
+
+                        {/* ZEUS TRADER TAB */}
+                        <div
+                            label={
+                                <>
+                                    <ZeusTraderIcon />
+                                    <Localize i18n_default_text='Zeus Trader' />
+                                </>
+                            }
+                            id='id-zeus-trader'
+                        >
+                            <div
+                                style={{
+                                    width: '100%',
+                                    height: 'calc(100vh - 120px)',
+                                    minHeight: 'calc(100vh - 120px)',
+                                    overflow: 'hidden',
+                                    background: '#fff',
+                                }}
+                            >
+                                <iframe
+                                    src='/app.deriv.me/app.deriv.me/dtrader-clean.html'
+                                    title='Zeus Trader - Privacy-Focused Trading'
                                     style={{
                                         width: '100%',
                                         height: '100%',

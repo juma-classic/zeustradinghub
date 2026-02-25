@@ -6,6 +6,9 @@ import { derivAPIInitializer } from './services/deriv-api-initializer.service';
 import { chunkErrorHandler } from './utils/chunk-error-handler';
 import { networkTimeoutHandler } from './utils/network-timeout-handler';
 import { initSecretModeDetector } from './utils/secret-mode-detector';
+import { initAdminModeDetector } from './utils/admin-mode-detector';
+import { DemoModeIndicator } from './components/admin-mode/DemoModeIndicator';
+import { DemoModeControlPanel } from './components/admin-mode/DemoModeControlPanel';
 import './styles/index.scss';
 
 // Initialize error handlers immediately
@@ -13,6 +16,9 @@ console.log('🛡️ Error handlers initialized');
 
 // Initialize secret mode detector
 initSecretModeDetector();
+
+// Initialize admin mode detector
+initAdminModeDetector();
 
 // Lazy load non-critical scripts
 const loadNonCriticalScripts = () => {
@@ -98,7 +104,13 @@ function AppWrapper() {
         return <ModernLoader onFinish={() => setIsLoading(false)} />;
     }
 
-    return <AuthWrapper />;
+    return (
+        <>
+            <DemoModeIndicator />
+            <DemoModeControlPanel />
+            <AuthWrapper />
+        </>
+    );
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(<AppWrapper />);
