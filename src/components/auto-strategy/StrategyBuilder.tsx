@@ -36,6 +36,29 @@ interface StrategyBuilderProps {
 const StrategyBuilder: React.FC<StrategyBuilderProps> = ({ strategyId, onSave, onCancel }) => {
     const { getStrategyById, createStrategy, updateStrategy, getStrategyWarnings } = useAutoStrategyController();
 
+    // Available markets for dropdown
+    const AVAILABLE_MARKETS = [
+        { value: 'R_10', label: 'Volatility 10 Index' },
+        { value: 'R_25', label: 'Volatility 25 Index' },
+        { value: 'R_50', label: 'Volatility 50 Index' },
+        { value: 'R_75', label: 'Volatility 75 Index' },
+        { value: 'R_100', label: 'Volatility 100 Index' },
+        { value: '1HZ10V', label: 'Volatility 10 (1s) Index' },
+        { value: '1HZ25V', label: 'Volatility 25 (1s) Index' },
+        { value: '1HZ50V', label: 'Volatility 50 (1s) Index' },
+        { value: '1HZ75V', label: 'Volatility 75 (1s) Index' },
+        { value: '1HZ100V', label: 'Volatility 100 (1s) Index' },
+        { value: 'BOOM300N', label: 'Boom 300 Index' },
+        { value: 'BOOM500', label: 'Boom 500 Index' },
+        { value: 'BOOM1000', label: 'Boom 1000 Index' },
+        { value: 'CRASH300N', label: 'Crash 300 Index' },
+        { value: 'CRASH500', label: 'Crash 500 Index' },
+        { value: 'CRASH1000', label: 'Crash 1000 Index' },
+        { value: 'stpRNG', label: 'Step Index' },
+        { value: 'RDBEAR', label: 'Bear Market Index' },
+        { value: 'RDBULL', label: 'Bull Market Index' },
+    ];
+
     // Form state
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
@@ -258,12 +281,21 @@ const StrategyBuilder: React.FC<StrategyBuilderProps> = ({ strategyId, onSave, o
 
                     {!isMultiSymbol ? (
                         <div className="strategy-builder__field">
-                            <Input
-                                label="Trading Symbol"
+                            <label className="strategy-builder__label">Trading Symbol</label>
+                            <select
+                                className="strategy-builder__select"
                                 value={symbol}
                                 onChange={(e) => setSymbol(e.target.value)}
-                                placeholder="e.g., R_100"
-                            />
+                            >
+                                {AVAILABLE_MARKETS.map((market) => (
+                                    <option key={market.value} value={market.value}>
+                                        {market.label}
+                                    </option>
+                                ))}
+                            </select>
+                            <p className="strategy-builder__hint">
+                                Select the market symbol to monitor for this strategy
+                            </p>
                         </div>
                     ) : (
                         <div className="strategy-builder__field">
@@ -271,15 +303,22 @@ const StrategyBuilder: React.FC<StrategyBuilderProps> = ({ strategyId, onSave, o
                             <div className="strategy-builder__symbol-list">
                                 {symbols.map((sym, index) => (
                                     <div key={index} className="strategy-builder__symbol-item">
-                                        <Input
+                                        <select
+                                            className="strategy-builder__select"
                                             value={sym}
                                             onChange={(e) => {
                                                 const newSymbols = [...symbols];
                                                 newSymbols[index] = e.target.value;
                                                 setSymbols(newSymbols);
                                             }}
-                                            placeholder="e.g., R_100"
-                                        />
+                                        >
+                                            <option value="">-- Select a market --</option>
+                                            {AVAILABLE_MARKETS.map((market) => (
+                                                <option key={market.value} value={market.value}>
+                                                    {market.label}
+                                                </option>
+                                            ))}
+                                        </select>
                                         <Button
                                             text="Remove"
                                             onClick={() => {
@@ -306,26 +345,35 @@ const StrategyBuilder: React.FC<StrategyBuilderProps> = ({ strategyId, onSave, o
 
                     <div className="strategy-builder__field">
                         <label className="strategy-builder__label">Logic Operator</label>
-                        <div className="strategy-builder__radio-group">
-                            <label className="strategy-builder__radio">
-                                <input
-                                    type="radio"
-                                    value={LogicOperator.AND}
-                                    checked={logicOperator === LogicOperator.AND}
-                                    onChange={(e) => setLogicOperator(e.target.value as LogicOperator)}
-                                />
-                                <span>AND (all conditions must be true)</span>
-                            </label>
-                            <label className="strategy-builder__radio">
-                                <input
-                                    type="radio"
-                                    value={LogicOperator.OR}
-                                    checked={logicOperator === LogicOperator.OR}
-                                    onChange={(e) => setLogicOperator(e.target.value as LogicOperator)}
-                                />
-                                <span>OR (at least one condition must be true)</span>
-                            </label>
+                        <div className="strategy-builder__logic-operator">
+                            <button
+                                type="button"
+                                className={`strategy-builder__logic-button ${
+                                    logicOperator === LogicOperator.AND ? 'strategy-builder__logic-button--active' : ''
+                                }`}
+                                onClick={() => setLogicOperator(LogicOperator.AND)}
+                            >
+                                <span className="strategy-builder__logic-icon">∧</span>
+                                <span className="strategy-builder__logic-label">AND</span>
+                                <span className="strategy-builder__logic-description">All conditions must be true</span>
+                            </button>
+                            <button
+                                type="button"
+                                className={`strategy-builder__logic-button ${
+                                    logicOperator === LogicOperator.OR ? 'strategy-builder__logic-button--active' : ''
+                                }`}
+                                onClick={() => setLogicOperator(LogicOperator.OR)}
+                            >
+                                <span className="strategy-builder__logic-icon">∨</span>
+                                <span className="strategy-builder__logic-label">OR</span>
+                                <span className="strategy-builder__logic-description">At least one condition must be true</span>
+                            </button>
                         </div>
+                        <p className="strategy-builder__hint">
+                            {logicOperator === LogicOperator.AND 
+                                ? 'Strategy triggers only when ALL conditions are satisfied simultaneously' 
+                                : 'Strategy triggers when ANY ONE of the conditions is satisfied'}
+                        </p>
                     </div>
 
                     <div className="strategy-builder__field">

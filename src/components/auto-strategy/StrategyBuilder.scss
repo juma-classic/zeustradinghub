@@ -124,6 +124,130 @@
         }
     }
 
+    // Logic Operator Buttons
+    &__logic-operator {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin-top: 1rem;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__logic-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.5rem;
+        background: var(--general-section-1);
+        border: 2px solid var(--general-section-2);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(65, 105, 225, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        &:hover {
+            border-color: #4169E1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(65, 105, 225, 0.2);
+
+            &::before {
+                opacity: 1;
+            }
+        }
+
+        &--active {
+            background: linear-gradient(135deg, #4169E1 0%, #1e3a8a 100%);
+            border-color: #FFD700;
+            box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
+
+            .strategy-builder__logic-icon {
+                color: #FFD700;
+                transform: scale(1.2);
+            }
+
+            .strategy-builder__logic-label {
+                color: #FFD700;
+            }
+
+            .strategy-builder__logic-description {
+                color: rgba(255, 255, 255, 0.9);
+            }
+
+            &::before {
+                opacity: 0;
+            }
+        }
+    }
+
+    &__logic-icon {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #4169E1;
+        margin-bottom: 0.5rem;
+        transition: all 0.3s;
+    }
+
+    &__logic-label {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--text-prominent);
+        margin-bottom: 0.5rem;
+        transition: color 0.3s;
+    }
+
+    &__logic-description {
+        font-size: 1.2rem;
+        color: var(--text-less-prominent);
+        text-align: center;
+        transition: color 0.3s;
+    }
+
+    &__hint {
+        margin-top: 0.5rem;
+        font-size: 1.2rem;
+        color: var(--text-less-prominent);
+        font-style: italic;
+    }
+
+    // Symbol List
+    &__symbol-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &__symbol-item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+
+        .strategy-builder__select {
+            flex: 1;
+        }
+
+        button {
+            flex-shrink: 0;
+            margin-top: 0;
+        }
+    }
+
     &__footer {
         display: flex;
         justify-content: flex-end;
@@ -283,29 +407,4 @@
             }
         }
     }
-}
-
-// Multi-symbol support styles
-.strategy-builder__symbol-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 8px;
-}
-
-.strategy-builder__symbol-item {
-    display: flex;
-    gap: 8px;
-    align-items: flex-end;
-
-    > div {
-        flex: 1;
-    }
-}
-
-.strategy-builder__hint {
-    font-size: 12px;
-    color: var(--text-less-prominent);
-    margin-top: 4px;
-    line-height: 1.4;
 }
