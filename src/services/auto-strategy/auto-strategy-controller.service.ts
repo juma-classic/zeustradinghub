@@ -124,6 +124,7 @@ export interface IAutoStrategyController {
 
     // Status and monitoring
     getStatus(): ControllerStatus;
+    getAllStrategies(): Strategy[];
     getActiveStrategies(): Strategy[];
     getStrategyPerformance(id: string): StrategyPerformance | null;
 
@@ -627,6 +628,13 @@ export class AutoStrategyController implements IAutoStrategyController {
      */
     getStatus(): ControllerStatus {
         return this.status;
+    }
+
+    /**
+     * Get all strategies
+     */
+    getAllStrategies(): Strategy[] {
+        return this.strategyStorage.readAll();
     }
 
     /**

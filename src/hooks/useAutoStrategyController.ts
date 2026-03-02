@@ -163,7 +163,7 @@ export function useAutoStrategyController(): UseAutoStrategyControllerReturn {
         const controller = controllerRef.current;
         updateState({
             status: controller.getStatus(),
-            strategies: controller['strategyStorage'].getAllStrategies(),
+            strategies: controller.getAllStrategies(),
             activeStrategies: controller.getActiveStrategies(),
         });
     }, [updateState]);
