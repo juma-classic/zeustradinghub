@@ -1,0 +1,189 @@
+/**
+ * Alert Configuration Builder Styles
+ */
+
+.alert-config-builder {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    &__subtitle {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-primary, #333);
+        margin: 0;
+    }
+
+    &__description {
+        font-size: 0.875rem;
+        color: var(--text-secondary, #666);
+        margin: 0;
+        line-height: 1.5;
+    }
+
+    &__checkboxes {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+    }
+
+    &__checkbox {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+
+        input[type="checkbox"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            accent-color: var(--primary-color, #FFD700);
+        }
+    }
+
+    &__checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9375rem;
+        color: var(--text-primary, #333);
+    }
+
+    &__checkbox-icon {
+        font-size: 1.25rem;
+    }
+
+    &__permission-request {
+        margin-top: 0.75rem;
+        padding: 1rem;
+        background-color: var(--warning-bg, #fff3cd);
+        border: 1px solid var(--warning-border, #ffc107);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    &__permission-text {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--warning-text, #856404);
+    }
+
+    &__radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+    }
+
+    &__radio {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+
+        input[type="radio"] {
+            width: 1.125rem;
+            height: 1.125rem;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            accent-color: var(--primary-color, #FFD700);
+        }
+
+        span {
+            font-size: 0.9375rem;
+            color: var(--text-primary, #333);
+        }
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0.625rem 0.875rem;
+        font-size: 0.9375rem;
+        border: 1px solid var(--border-color, #ddd);
+        border-radius: 4px;
+        background-color: var(--input-bg, #fff);
+        color: var(--text-primary, #333);
+        transition: border-color 0.2s;
+
+        &:focus {
+            outline: none;
+            border-color: var(--primary-color, #FFD700);
+        }
+
+        &::placeholder {
+            color: var(--text-tertiary, #999);
+        }
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 0.5rem;
+    }
+}
+
+// Dark theme support
+@media (prefers-color-scheme: dark) {
+    .alert-config-builder {
+        &__subtitle {
+            color: var(--text-primary-dark, #f0f0f0);
+        }
+
+        &__description {
+            color: var(--text-secondary-dark, #b0b0b0);
+        }
+
+        &__checkbox-label,
+        &__radio span {
+            color: var(--text-primary-dark, #f0f0f0);
+        }
+
+        &__input {
+            background-color: var(--input-bg-dark, #2a2a2a);
+            border-color: var(--border-color-dark, #444);
+            color: var(--text-primary-dark, #f0f0f0);
+
+            &::placeholder {
+                color: var(--text-tertiary-dark, #666);
+            }
+        }
+    }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+    .alert-config-builder {
+        gap: 1.25rem;
+
+        &__section {
+            gap: 0.625rem;
+        }
+
+        &__subtitle {
+            font-size: 0.9375rem;
+        }
+
+        &__description {
+            font-size: 0.8125rem;
+        }
+
+        &__checkbox-label,
+        &__radio span {
+            font-size: 0.875rem;
+        }
+
+        &__checkbox-icon {
+            font-size: 1.125rem;
+        }
+    }
+}

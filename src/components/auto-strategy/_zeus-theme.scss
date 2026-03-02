@@ -1,0 +1,345 @@
+/**
+ * Zeus Trading Hub - Theme Variables
+ * God of Thunder Theme with Electric Blue and Gold
+ * 
+ * This file contains all Zeus theme variables for the Auto Strategy Controller
+ * to ensure consistent styling across all components.
+ */
+
+// ============================================================================
+// Primary Colors - Zeus Theme
+// ============================================================================
+
+$zeus-gold: #FFD700;
+$zeus-gold-light: #FFED4E;
+$zeus-gold-dark: #FFA500;
+$zeus-gold-darker: #FF8C00;
+
+$zeus-blue: #4169E1;
+$zeus-blue-light: #6495ED;
+$zeus-blue-dark: #1e3a8a;
+$zeus-blue-darker: #0a0e27;
+
+// ============================================================================
+// Semantic Colors
+// ============================================================================
+
+$color-success: #00ff00;
+$color-success-dark: #00cc00;
+$color-error: #ff4444;
+$color-error-dark: #cc0000;
+$color-warning: #FFA500;
+$color-warning-dark: #FF8C00;
+$color-info: $zeus-blue;
+$color-neutral: #808080;
+
+// ============================================================================
+// Background Colors
+// ============================================================================
+
+$bg-primary: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
+$bg-card: rgba(255, 255, 255, 0.04);
+$bg-card-hover: rgba(255, 255, 255, 0.06);
+$bg-section: rgba(255, 255, 255, 0.02);
+$bg-overlay: rgba(0, 0, 0, 0.8);
+$bg-glass: rgba(255, 255, 255, 0.03);
+
+// ============================================================================
+// Border Colors
+// ============================================================================
+
+$border-gold: rgba(255, 215, 0, 0.25);
+$border-gold-hover: rgba(255, 215, 0, 0.4);
+$border-gold-active: rgba(255, 215, 0, 0.6);
+
+$border-blue: rgba(65, 105, 225, 0.25);
+$border-blue-hover: rgba(65, 105, 225, 0.4);
+$border-blue-active: rgba(65, 105, 225, 0.6);
+
+$border-white: rgba(255, 255, 255, 0.1);
+$border-white-hover: rgba(255, 255, 255, 0.2);
+
+// ============================================================================
+// Text Colors
+// ============================================================================
+
+$text-primary: rgba(255, 255, 255, 0.9);
+$text-secondary: rgba(255, 255, 255, 0.7);
+$text-tertiary: rgba(255, 255, 255, 0.5);
+$text-gold: $zeus-gold;
+$text-blue: $zeus-blue;
+
+// ============================================================================
+// Shadow Effects
+// ============================================================================
+
+$shadow-gold: 0 0 10px rgba(255, 215, 0, 0.3);
+$shadow-gold-strong: 0 0 20px rgba(255, 215, 0, 0.6);
+$shadow-blue: 0 0 10px rgba(65, 105, 225, 0.3);
+$shadow-blue-strong: 0 0 20px rgba(65, 105, 225, 0.6);
+$shadow-card: 0 4px 16px rgba(0, 0, 0, 0.3);
+$shadow-card-hover: 0 6px 24px rgba(0, 0, 0, 0.4);
+
+// ============================================================================
+// Gradients
+// ============================================================================
+
+$gradient-gold: linear-gradient(135deg, $zeus-gold 0%, $zeus-gold-dark 100%);
+$gradient-blue: linear-gradient(135deg, $zeus-blue 0%, $zeus-blue-dark 100%);
+$gradient-success: linear-gradient(135deg, $color-success 0%, $color-success-dark 100%);
+$gradient-error: linear-gradient(135deg, $color-error 0%, $color-error-dark 100%);
+$gradient-gold-blue: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(65, 105, 225, 0.15) 100%);
+
+// ============================================================================
+// Spacing
+// ============================================================================
+
+$spacing-xs: 0.5rem;
+$spacing-sm: 0.75rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+$spacing-xxl: 3rem;
+
+// ============================================================================
+// Border Radius
+// ============================================================================
+
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-round: 50%;
+
+// ============================================================================
+// Typography
+// ============================================================================
+
+$font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+$font-family-mono: 'Courier New', Courier, monospace;
+
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.85rem;
+$font-size-md: 0.95rem;
+$font-size-lg: 1.1rem;
+$font-size-xl: 1.25rem;
+$font-size-xxl: 1.5rem;
+$font-size-xxxl: 2rem;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// ============================================================================
+// Transitions
+// ============================================================================
+
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// ============================================================================
+// Z-Index Layers
+// ============================================================================
+
+$z-index-base: 1;
+$z-index-dropdown: 100;
+$z-index-modal: 1000;
+$z-index-overlay: 999;
+$z-index-tooltip: 1100;
+
+// ============================================================================
+// Breakpoints
+// ============================================================================
+
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1280px;
+$breakpoint-xl: 1536px;
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+// Zeus card styling
+@mixin zeus-card {
+    background: $bg-card;
+    border: 2px solid $border-gold;
+    border-radius: $radius-xl;
+    padding: $spacing-lg;
+    backdrop-filter: blur(10px);
+    box-shadow: $shadow-card;
+    transition: all $transition-normal;
+
+    &:hover {
+        border-color: $border-gold-hover;
+        box-shadow: $shadow-card-hover;
+        transform: translateY(-2px);
+    }
+}
+
+// Zeus button styling
+@mixin zeus-button($color: 'gold') {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-xs;
+    padding: $spacing-sm $spacing-lg;
+    border: 2px solid;
+    border-radius: $radius-lg;
+    font-size: $font-size-md;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all $transition-normal;
+
+    @if $color == 'gold' {
+        background: rgba(255, 215, 0, 0.1);
+        border-color: $border-gold-hover;
+        color: $zeus-gold;
+
+        &:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: $border-gold-active;
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+    } @else if $color == 'blue' {
+        background: rgba(65, 105, 225, 0.1);
+        border-color: $border-blue-hover;
+        color: $zeus-blue;
+
+        &:hover {
+            background: rgba(65, 105, 225, 0.2);
+            border-color: $border-blue-active;
+            box-shadow: 0 4px 12px rgba(65, 105, 225, 0.3);
+            transform: translateY(-2px);
+        }
+    } @else if $color == 'success' {
+        background: rgba(0, 255, 0, 0.1);
+        border-color: rgba(0, 255, 0, 0.4);
+        color: $color-success;
+
+        &:hover {
+            background: rgba(0, 255, 0, 0.2);
+            border-color: rgba(0, 255, 0, 0.6);
+            box-shadow: 0 4px 12px rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
+        }
+    } @else if $color == 'error' {
+        background: rgba(255, 68, 68, 0.1);
+        border-color: rgba(255, 68, 68, 0.4);
+        color: $color-error;
+
+        &:hover {
+            background: rgba(255, 68, 68, 0.2);
+            border-color: rgba(255, 68, 68, 0.6);
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+            transform: translateY(-2px);
+        }
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+// Zeus text glow effect
+@mixin text-glow($color: $zeus-gold) {
+    color: $color;
+    text-shadow: 0 0 10px rgba($color, 0.3);
+}
+
+// Zeus pulse animation
+@mixin pulse-animation($color: $zeus-gold) {
+    animation: pulse-#{$color} 2s ease-in-out infinite;
+
+    @keyframes pulse-#{$color} {
+        0%, 100% {
+            box-shadow: 0 0 10px rgba($color, 0.3);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba($color, 0.6);
+        }
+    }
+}
+
+// Responsive breakpoint mixin
+@mixin respond-to($breakpoint) {
+    @if $breakpoint == 'xs' {
+        @media (max-width: $breakpoint-xs) {
+            @content;
+        }
+    } @else if $breakpoint == 'sm' {
+        @media (max-width: $breakpoint-sm) {
+            @content;
+        }
+    } @else if $breakpoint == 'md' {
+        @media (max-width: $breakpoint-md) {
+            @content;
+        }
+    } @else if $breakpoint == 'lg' {
+        @media (max-width: $breakpoint-lg) {
+            @content;
+        }
+    } @else if $breakpoint == 'xl' {
+        @media (max-width: $breakpoint-xl) {
+            @content;
+        }
+    }
+}
+
+// Touch gesture support
+@mixin touch-support {
+    @media (hover: none) and (pointer: coarse) {
+        @content;
+    }
+}
+
+// Glass morphism effect
+@mixin glass-morphism {
+    background: $bg-glass;
+    backdrop-filter: blur(10px);
+    border: 2px solid $border-white;
+}
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+.zeus-text-gold {
+    @include text-glow($zeus-gold);
+}
+
+.zeus-text-blue {
+    @include text-glow($zeus-blue);
+}
+
+.zeus-card {
+    @include zeus-card;
+}
+
+.zeus-button-gold {
+    @include zeus-button('gold');
+}
+
+.zeus-button-blue {
+    @include zeus-button('blue');
+}
+
+.zeus-button-success {
+    @include zeus-button('success');
+}
+
+.zeus-button-error {
+    @include zeus-button('error');
+}

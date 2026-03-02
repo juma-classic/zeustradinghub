@@ -1,0 +1,653 @@
+// Zeus Trading Hub - Performance Metrics Styles
+// God of Thunder Theme with Electric Blue and Gold
+
+.performance-metrics {
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 215, 0, 0.25);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+
+    &:hover {
+        border-color: rgba(255, 215, 0, 0.4);
+        box-shadow: 0 6px 24px rgba(255, 215, 0, 0.2);
+    }
+
+    // Loading state
+    &--loading {
+        min-height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // Error state
+    &--error {
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // Empty state
+    &--empty {
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // Header
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+        flex-wrap: wrap;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #FFD700;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+
+    // Time Period Selector
+    &__period-selector {
+        display: flex;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0.25rem;
+    }
+
+    &__period-btn {
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        &--active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 165, 0, 0.2) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #FFD700;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 165, 0, 0.25) 100%);
+            }
+        }
+    }
+
+    // Net Profit/Loss Section
+    &__net-section {
+        text-align: center;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+    }
+
+    &__net-label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.75rem;
+    }
+
+    &__net-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        font-family: 'Courier New', monospace;
+        text-shadow: 0 0 20px currentColor;
+        animation: netPulse 3s ease-in-out infinite;
+
+        &--profit {
+            color: #00ff00;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+        }
+
+        &--loss {
+            color: #ff4444;
+            text-shadow: 0 0 20px rgba(255, 68, 68, 0.6);
+        }
+
+        &--neutral {
+            color: rgba(255, 255, 255, 0.7);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    // Metrics Grid
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &__metric {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 1rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    &__metric-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    &__metric-icon {
+        font-size: 1.25rem;
+        filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.3));
+    }
+
+    &__metric-label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    &__metric-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.9);
+        font-family: 'Courier New', monospace;
+        margin-bottom: 0.5rem;
+
+        &--profit {
+            color: #00ff00;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+        }
+
+        &--loss {
+            color: #ff4444;
+            text-shadow: 0 0 10px rgba(255, 68, 68, 0.4);
+        }
+    }
+
+    // Win Rate Bar
+    &__metric-bar {
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__metric-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #FFD700 0%, #00ff00 100%);
+        border-radius: 3px;
+        transition: width 0.5s ease;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        animation: barGlow 2s ease-in-out infinite;
+    }
+
+    // Additional Stats
+    &__additional {
+        display: flex;
+        gap: 2rem;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        justify-content: center;
+    }
+
+    &__stat {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &__stat-label {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 500;
+    }
+
+    &__stat-value {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #4169E1;
+        text-shadow: 0 0 8px rgba(65, 105, 225, 0.4);
+    }
+
+    // Top Performers
+    &__top-performers {
+        padding: 1rem;
+        background: rgba(255, 215, 0, 0.05);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        border-radius: 12px;
+    }
+
+    &__top-title {
+        margin: 0 0 0.75rem 0;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.8);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    &__top-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 215, 0, 0.2);
+        border-radius: 10px;
+    }
+
+    &__top-icon {
+        font-size: 2rem;
+        filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    &__top-details {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__top-name {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    &__top-value {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #00ff00;
+        font-family: 'Courier New', monospace;
+        text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+    }
+
+    // Loader
+    &__loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__loader-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255, 215, 0, 0.2);
+        border-top-color: #FFD700;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    &__loader-text {
+        margin: 0;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    // Error
+    &__error {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: center;
+    }
+
+    &__error-icon {
+        font-size: 3rem;
+    }
+
+    &__error-text {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ff4444;
+    }
+
+    &__error-details {
+        margin: 0;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: 'Courier New', monospace;
+    }
+
+    // Empty
+    &__empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: center;
+    }
+
+    &__empty-icon {
+        font-size: 3rem;
+        opacity: 0.5;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    &__empty-text {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    &__empty-subtext {
+        margin: 0;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+        max-width: 300px;
+    }
+}
+
+// Animations
+@keyframes netPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.85;
+    }
+}
+
+@keyframes barGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+// Mobile Responsive - Enhanced for Requirements 30.1-30.5
+@media (max-width: 768px) {
+    .performance-metrics {
+        padding: 1.25rem;
+
+        &__header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+        }
+
+        &__title {
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        &__period-selector {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 215, 0, 0.5) transparent;
+
+            &::-webkit-scrollbar {
+                height: 4px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 2px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: rgba(255, 215, 0, 0.5);
+                border-radius: 2px;
+            }
+        }
+
+        &__period-btn {
+            padding: 0.6rem 1rem;
+            font-size: 0.85rem;
+            min-width: 80px;
+            flex-shrink: 0;
+            min-height: 44px; // Touch target size
+
+            &:active {
+                transform: scale(0.97);
+            }
+        }
+
+        &__net-section {
+            padding: 1.5rem 1rem;
+        }
+
+        &__net-value {
+            font-size: 2.2rem;
+        }
+
+        &__grid {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+
+        &__metric {
+            padding: 1rem;
+
+            &:active {
+                transform: scale(0.99);
+            }
+        }
+
+        &__metric-value {
+            font-size: 1.3rem;
+        }
+
+        &__additional {
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        &__stat {
+            justify-content: center;
+        }
+
+        &__top-details {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        &__top-value {
+            font-size: 1rem;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .performance-metrics {
+        padding: 1rem;
+
+        &__title {
+            font-size: 1.1rem;
+        }
+
+        &__net-value {
+            font-size: 1.9rem;
+        }
+
+        &__grid {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        &__metric {
+            padding: 0.875rem;
+        }
+
+        &__metric-value {
+            font-size: 1.2rem;
+        }
+
+        &__period-selector {
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+        }
+
+        &__period-btn {
+            flex-shrink: 0;
+            min-width: 70px;
+            padding: 0.5rem 0.8rem;
+            font-size: 0.8rem;
+            min-height: 40px;
+        }
+
+        &__additional {
+            gap: 0.75rem;
+        }
+
+        &__top-item {
+            padding: 0.6rem;
+        }
+
+        &__top-icon {
+            font-size: 1.75rem;
+        }
+
+        &__top-name {
+            font-size: 0.9rem;
+        }
+
+        &__top-value {
+            font-size: 0.95rem;
+        }
+    }
+}
+
+// Touch gesture support for mobile devices
+@media (hover: none) and (pointer: coarse) {
+    .performance-metrics {
+        &__period-btn {
+            min-height: 44px;
+            
+            &:active {
+                transform: scale(0.96);
+                transition: transform 0.1s ease;
+            }
+        }
+
+        &__metric {
+            &:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+        }
+
+        &__top-item {
+            &:active {
+                transform: scale(0.99);
+                transition: transform 0.1s ease;
+            }
+        }
+    }
+}
+
+// Landscape orientation adjustments for mobile
+@media (max-width: 768px) and (orientation: landscape) {
+    .performance-metrics {
+        &__header {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &__grid {
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        }
+
+        &__additional {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+    .performance-metrics {
+        &__metric {
+            border-width: 2px;
+        }
+
+        &__metric-bar-fill {
+            box-shadow: none;
+            background: #FFD700;
+        }
+    }
+}

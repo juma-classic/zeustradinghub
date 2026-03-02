@@ -1,0 +1,53 @@
+/**
+ * Auto-Started Badge Styles
+ * Zeus theme colors: gold #FFD700, electric blue #4169E1
+ */
+
+.auto-started-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #4169E1 0%, #FFD700 100%);
+    font-size: 11px;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(65, 105, 225, 0.2);
+    
+    &__icon {
+        font-size: 12px;
+        line-height: 1;
+    }
+    
+    &__text {
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    // Animation for attention
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.85;
+    }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+    .auto-started-badge {
+        font-size: 10px;
+        padding: 2px 6px;
+        
+        &__icon {
+            font-size: 11px;
+        }
+    }
+}

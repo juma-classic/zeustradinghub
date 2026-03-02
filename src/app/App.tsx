@@ -8,6 +8,7 @@ import CallbackPage from '@/pages/callback';
 import Endpoint from '@/pages/endpoint';
 import { analyticsManager } from '@/services/analytics-manager.service';
 import { masterTradeIntegrationService } from '@/services/master-trade-integration.service';
+import { initializeAutoStrategyController, cleanupAutoStrategyController } from '@/services/auto-strategy-app-integration.service';
 import { TAuthData } from '@/types/api-types';
 import { initAntiInspect } from '@/utils/anti-inspect';
 import { initializeFastLaneViewport } from '@/utils/fast-lane-viewport';
@@ -127,6 +128,9 @@ function App() {
         // Initialize master trade integration service for copy trading
         masterTradeIntegrationService.initialize().catch(console.error);
 
+        // Initialize Auto Strategy Controller
+        initializeAutoStrategyController().catch(console.error);
+
         initSurvicate();
         window?.dataLayer?.push({ event: 'page_load' });
 
@@ -141,6 +145,9 @@ function App() {
             if (survicateBox) {
                 survicateBox.style.display = 'none';
             }
+            
+            // Cleanup Auto Strategy Controller on unmount
+            cleanupAutoStrategyController().catch(console.error);
         };
     }, []);
 

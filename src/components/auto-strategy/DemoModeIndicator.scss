@@ -1,0 +1,106 @@
+/**
+ * Demo Mode Indicator Styles
+ * Requirements: 29.3, 31.1, 31.2
+ */
+
+.demo-mode-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #ff9800 0%, #ff5722 100%);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+    animation: pulse-glow 2s ease-in-out infinite;
+    margin-right: 16px;
+
+    &__icon {
+        font-size: 24px;
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &__title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    &__subtitle {
+        font-size: 11px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    &__details {
+        display: flex;
+        gap: 12px;
+        margin-top: 4px;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.85);
+    }
+
+    &__account {
+        font-weight: 600;
+    }
+
+    &__balance {
+        font-weight: 500;
+    }
+}
+
+// Pulse glow animation
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(255, 152, 0, 0.6);
+    }
+}
+
+// Bounce animation for icon
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+    .demo-mode-indicator {
+        padding: 8px 12px;
+        gap: 8px;
+        margin-right: 0;
+        margin-bottom: 12px;
+        width: 100%;
+
+        &__icon {
+            font-size: 20px;
+        }
+
+        &__title {
+            font-size: 12px;
+        }
+
+        &__subtitle {
+            font-size: 10px;
+        }
+
+        &__details {
+            flex-direction: column;
+            gap: 2px;
+            font-size: 9px;
+        }
+    }
+}

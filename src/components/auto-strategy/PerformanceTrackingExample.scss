@@ -1,0 +1,280 @@
+// Zeus Trading Hub - Performance Tracking Example Styles
+// God of Thunder Theme with Electric Blue and Gold
+
+.performance-tracking-example {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    // Header
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+        flex-wrap: wrap;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #FFD700;
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    // View Controls
+    &__controls {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    &__view-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 215, 0, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        &--active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 165, 0, 0.2) 100%);
+            border-color: rgba(255, 215, 0, 0.5);
+            color: #FFD700;
+            box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 165, 0, 0.25) 100%);
+            }
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &__view-icon {
+        font-size: 1.25rem;
+    }
+
+    &__view-text {
+        font-size: 0.95rem;
+    }
+
+    // Strategy Selector
+    &__selector {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.04);
+        border: 2px solid rgba(65, 105, 225, 0.25);
+        border-radius: 12px;
+    }
+
+    &__selector-label {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    &__selector-input {
+        width: 100%;
+        padding: 0.875rem 1.25rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
+        font-family: 'Courier New', monospace;
+        transition: all 0.3s ease;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        &:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(65, 105, 225, 0.5);
+            box-shadow: 0 0 20px rgba(65, 105, 225, 0.2);
+        }
+    }
+
+    &__selector-hint {
+        margin: 0.5rem 0 0 0;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-style: italic;
+    }
+
+    // Content Grid
+    &__content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    &__section {
+        // Individual section styling
+    }
+
+    // Instructions
+    &__instructions {
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.02);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+    }
+
+    &__instructions-title {
+        margin: 0 0 1rem 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    &__instructions-list {
+        margin: 0;
+        padding-left: 1.5rem;
+        list-style-type: none;
+
+        li {
+            position: relative;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+
+            &:before {
+                content: '⚡';
+                position: absolute;
+                left: -1.5rem;
+                color: #FFD700;
+                filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.5));
+            }
+
+            strong {
+                color: #4169E1;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+// Mobile Responsive
+@media (max-width: 1024px) {
+    .performance-tracking-example {
+        &__content {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .performance-tracking-example {
+        padding: 1.5rem;
+
+        &__header {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        &__title {
+            font-size: 1.75rem;
+            text-align: center;
+        }
+
+        &__controls {
+            width: 100%;
+        }
+
+        &__view-btn {
+            flex: 1;
+            justify-content: center;
+        }
+
+        &__selector {
+            padding: 1.25rem;
+        }
+
+        &__instructions {
+            padding: 1.25rem;
+        }
+
+        &__instructions-list {
+            padding-left: 1.25rem;
+
+            li {
+                font-size: 0.85rem;
+
+                &:before {
+                    left: -1.25rem;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .performance-tracking-example {
+        padding: 1rem;
+
+        &__title {
+            font-size: 1.5rem;
+        }
+
+        &__controls {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        &__view-btn {
+            padding: 0.65rem 1rem;
+        }
+
+        &__selector {
+            padding: 1rem;
+        }
+
+        &__selector-input {
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        &__content {
+            gap: 1rem;
+        }
+
+        &__instructions {
+            padding: 1rem;
+        }
+    }
+}
+
+// Touch gesture support for mobile
+@media (hover: none) and (pointer: coarse) {
+    .performance-tracking-example__view-btn {
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+}

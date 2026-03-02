@@ -17,6 +17,7 @@ import { Localize } from '@deriv-com/translations';
 import { useDevice } from '@deriv-com/ui';
 import { rudderStackSendDashboardClickEvent } from '../../../analytics/rudderstack-dashboard';
 import { STRATEGY } from '../../../constants/dashboard';
+import AutoStartedBadge from '@/components/auto-strategy/AutoStartedBadge';
 import './index.scss';
 
 export const CONTEXT_MENU = [
@@ -153,6 +154,7 @@ const RecentWorkspace = observer(({ workspace, index }: TRecentWorkspace) => {
                     <Text align='left' as='p' size={text_size} lineHeight='l'>
                         {workspace.name}
                     </Text>
+                    <AutoStartedBadge botId={workspace.id} />
                 </div>
             </div>
             <div className='bot-list__item__time-stamp'>

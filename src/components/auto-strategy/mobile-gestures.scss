@@ -1,0 +1,455 @@
+/**
+ * Mobile Gestures and Touch Support for Auto Strategy Controller
+ * Zeus theme: Gold (#FFD700) and Electric Blue (#4169E1)
+ * 
+ * This file provides mobile-specific gesture support and touch interactions
+ * for the Auto Strategy Controller components.
+ */
+
+// ============================================================================
+// Touch Gesture Mixins
+// ============================================================================
+
+// Swipe gesture support
+@mixin swipe-gesture($direction: 'left', $color: #FFD700) {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba($color, 0.6), transparent);
+        transition: all 0.3s ease;
+        pointer-events: none;
+
+        @if $direction == 'left' {
+            right: 1rem;
+        } @else {
+            left: 1rem;
+        }
+    }
+
+    &:active::after {
+        width: 40px;
+    }
+}
+
+// Touch feedback for buttons
+@mixin touch-feedback($scale: 0.97) {
+    transition: transform 0.1s ease;
+
+    &:active {
+        transform: scale($scale);
+    }
+}
+
+// Minimum touch target size
+@mixin touch-target($size: 44px) {
+    min-height: $size;
+    min-width: $size;
+}
+
+// ============================================================================
+// Mobile-Specific Utility Classes
+// ============================================================================
+
+// Touch-friendly button class
+.zeus-touch-button {
+    @include touch-target(48px);
+    @include touch-feedback(0.96);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid rgba(255, 215, 0, 0.4);
+    border-radius: 12px;
+    background: rgba(255, 215, 0, 0.1);
+    color: #FFD700;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        border-color: rgba(255, 215, 0, 0.6);
+        background: rgba(255, 215, 0, 0.2);
+        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    // Variants
+    &--danger {
+        border-color: rgba(255, 68, 68, 0.4);
+        background: rgba(255, 68, 68, 0.1);
+        color: #ff4444;
+
+        &:hover {
+            border-color: rgba(255, 68, 68, 0.6);
+            background: rgba(255, 68, 68, 0.2);
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+        }
+    }
+
+    &--success {
+        border-color: rgba(0, 255, 0, 0.4);
+        background: rgba(0, 255, 0, 0.1);
+        color: #00ff00;
+
+        &:hover {
+            border-color: rgba(0, 255, 0, 0.6);
+            background: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 255, 0, 0.3);
+        }
+    }
+}
+
+// Swipeable card class
+.zeus-swipeable-card {
+    @include swipe-gesture('left', #FFD700);
+    
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(255, 215, 0, 0.25);
+    border-radius: 12px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+
+    &:active {
+        transform: scale(0.99);
+        border-color: rgba(255, 215, 0, 0.4);
+    }
+
+    // Swipe actions
+    &__actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    &__action {
+        @extend .zeus-touch-button;
+        flex: 1;
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+}
+
+// Mobile-optimized form inputs
+.zeus-mobile-input {
+    @include touch-target(44px);
+    
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+        outline: none;
+        border-color: #FFD700;
+        box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        background: rgba(255, 255, 255, 0.08);
+        transform: scale(1.02);
+    }
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+}
+
+// Mobile-optimized select dropdown
+.zeus-mobile-select {
+    @extend .zeus-mobile-input;
+    
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFD700' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 3rem;
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+// ============================================================================
+// Mobile Navigation and Layout
+// ============================================================================
+
+// Mobile-friendly navigation tabs
+.zeus-mobile-tabs {
+    display: flex;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 0.25rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &__tab {
+        @include touch-target(44px);
+        @include touch-feedback(0.98);
+        
+        flex: 1;
+        min-width: 80px;
+        padding: 0.75rem 1rem;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        &--active {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 165, 0, 0.2) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            color: #FFD700;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+
+            &:hover {
+                background: linear-gradient(135deg, rgba(255, 215, 0, 0.25) 0%, rgba(255, 165, 0, 0.25) 100%);
+            }
+        }
+    }
+}
+
+// Mobile-friendly modal/dialog
+.zeus-mobile-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+
+    @media (min-width: 768px) {
+        align-items: center;
+    }
+
+    &__content {
+        width: 100%;
+        max-width: 500px;
+        max-height: 80vh;
+        background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
+        border: 2px solid rgba(255, 215, 0, 0.3);
+        border-radius: 20px 20px 8px 8px;
+        overflow: hidden;
+        animation: slideUpMobile 0.3s ease;
+
+        @media (min-width: 768px) {
+            border-radius: 20px;
+            animation: slideUp 0.3s ease;
+        }
+    }
+
+    &__header {
+        padding: 1.5rem;
+        border-bottom: 2px solid rgba(255, 215, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #FFD700;
+    }
+
+    &__close {
+        @include touch-target(44px);
+        @include touch-feedback(0.96);
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+        }
+    }
+
+    &__body {
+        padding: 1.5rem;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    &__actions {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        gap: 0.75rem;
+
+        @media (max-width: 480px) {
+            flex-direction: column;
+        }
+    }
+}
+
+// ============================================================================
+// Mobile Animations
+// ============================================================================
+
+@keyframes slideUpMobile {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+// ============================================================================
+// Mobile-Specific Media Queries
+// ============================================================================
+
+// Apply mobile styles only on touch devices
+@media (hover: none) and (pointer: coarse) {
+    // Enhanced touch targets
+    button, 
+    .clickable,
+    [role="button"] {
+        @include touch-target(44px);
+        @include touch-feedback(0.97);
+    }
+
+    // Improved scrollbars for touch
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 215, 0, 0.6);
+        border-radius: 3px;
+
+        &:hover {
+            background: rgba(255, 215, 0, 0.8);
+        }
+    }
+
+    // Remove hover effects on touch devices
+    .no-touch-hover {
+        &:hover {
+            transform: none;
+            box-shadow: none;
+            border-color: inherit;
+            background: inherit;
+        }
+    }
+}
+
+// Landscape orientation optimizations
+@media (max-width: 768px) and (orientation: landscape) {
+    .zeus-mobile-modal {
+        align-items: center;
+        
+        &__content {
+            max-height: 90vh;
+            border-radius: 20px;
+        }
+    }
+
+    .zeus-mobile-tabs {
+        &__tab {
+            min-width: 60px;
+            font-size: 0.8rem;
+        }
+    }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+    .zeus-touch-button,
+    .zeus-mobile-input,
+    .zeus-swipeable-card {
+        border-width: 3px;
+    }
+
+    .zeus-mobile-tabs__tab--active {
+        border-width: 2px;
+    }
+}
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+    .zeus-touch-button,
+    .zeus-mobile-input,
+    .zeus-swipeable-card,
+    .zeus-mobile-tabs__tab {
+        transition: none;
+    }
+
+    .zeus-mobile-modal__content {
+        animation: none;
+    }
+
+    @keyframes slideUpMobile,
+    @keyframes slideUp {
+        from, to {
+            transform: none;
+            opacity: 1;
+        }
+    }
+}

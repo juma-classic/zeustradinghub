@@ -1,0 +1,103 @@
+/**
+ * Backtesting Mode Indicator Styles
+ */
+
+.backtesting-mode-indicator {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    animation: slideDown 0.3s ease-out;
+
+    .indicator-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 24px;
+        background: linear-gradient(135deg, #FF9800 0%, #FF5722 100%);
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+        animation: pulse 2s ease-in-out infinite;
+
+        .indicator-icon {
+            font-size: 24px;
+            animation: rotate 3s linear infinite;
+        }
+
+        .indicator-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+
+            strong {
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+            }
+
+            .indicator-subtitle {
+                font-size: 12px;
+                opacity: 0.9;
+            }
+        }
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(255, 152, 0, 0.6);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+    .backtesting-mode-indicator {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        transform: none;
+
+        .indicator-content {
+            padding: 10px 16px;
+
+            .indicator-icon {
+                font-size: 20px;
+            }
+
+            .indicator-text {
+                strong {
+                    font-size: 14px;
+                }
+
+                .indicator-subtitle {
+                    font-size: 11px;
+                }
+            }
+        }
+    }
+}

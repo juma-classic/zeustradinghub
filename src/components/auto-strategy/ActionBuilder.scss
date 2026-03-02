@@ -1,0 +1,163 @@
+/**
+ * Action Builder Styles
+ * Zeus Theme: Gold (#FFD700) and Electric Blue (#4169E1)
+ */
+
+@import './zeus-theme';
+
+.action-builder {
+    &__field {
+        margin-bottom: 1.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: $font-size-md;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+    }
+
+    &__select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: $font-size-md;
+        border: 2px solid $border-white;
+        border-radius: $radius-md;
+        background: rgba(0, 0, 0, 0.3);
+        color: $text-primary;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+            border-color: $border-blue-hover;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $zeus-gold;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        option {
+            background: #1a1a1a;
+            color: $text-primary;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: $font-size-md;
+        border: 2px solid $border-white;
+        border-radius: $radius-md;
+        background: rgba(0, 0, 0, 0.3);
+        color: $text-primary;
+        transition: all $transition-fast;
+
+        &:hover {
+            border-color: $border-blue-hover;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $zeus-gold;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        &::placeholder {
+            color: $text-tertiary;
+        }
+
+        &[type="number"] {
+            font-family: $font-family-mono;
+        }
+    }
+
+    &__hint {
+        margin-top: 0.5rem;
+        font-size: $font-size-sm;
+        color: $text-tertiary;
+        font-style: italic;
+        line-height: 1.4;
+    }
+
+    &__preview {
+        margin-top: 1.5rem;
+        padding: 1.25rem;
+        background: rgba(65, 105, 225, 0.1);
+        border: 2px solid $border-blue;
+        border-radius: $radius-lg;
+        animation: slideIn 0.3s ease;
+    }
+
+    &__preview-title {
+        margin: 0 0 0.75rem 0;
+        font-size: $font-size-md;
+        font-weight: $font-weight-bold;
+        color: $zeus-blue;
+        text-shadow: $shadow-blue;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    &__preview-content {
+        font-size: $font-size-md;
+        color: $text-primary;
+        line-height: 1.5;
+
+        strong {
+            color: $zeus-gold;
+            font-weight: $font-weight-bold;
+        }
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+    .action-builder {
+        &__field {
+            margin-bottom: 1.25rem;
+        }
+
+        &__preview {
+            padding: 1rem;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .action-builder {
+        &__label {
+            font-size: $font-size-sm;
+        }
+
+        &__select,
+        &__input {
+            font-size: $font-size-sm;
+        }
+
+        &__preview-title {
+            font-size: $font-size-sm;
+        }
+
+        &__preview-content {
+            font-size: $font-size-sm;
+        }
+    }
+}

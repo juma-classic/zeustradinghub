@@ -1,0 +1,732 @@
+// Zeus Trading Hub - Running Bot Card Styles
+// God of Thunder Theme with Electric Blue and Gold
+
+.running-bot-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.04);
+    border: 2px solid rgba(65, 105, 225, 0.3);
+    border-radius: 16px;
+    padding: 1.25rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    animation: slideIn 0.3s ease;
+
+    &:hover {
+        border-color: rgba(65, 105, 225, 0.5);
+        box-shadow: 0 6px 24px rgba(65, 105, 225, 0.2);
+        transform: translateY(-2px);
+    }
+
+    // Auto-started badge
+    &__badge {
+        position: absolute;
+        top: -10px;
+        right: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.75rem;
+        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+        z-index: 1;
+    }
+
+    &__badge-icon {
+        font-size: 0.9rem;
+        animation: electricPulse 2s ease-in-out infinite;
+    }
+
+    &__badge-text {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #000;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    // Header section
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid rgba(65, 105, 225, 0.2);
+    }
+
+    &__title {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        flex: 1;
+    }
+
+    &__icon {
+        font-size: 2rem;
+        filter: drop-shadow(0 0 8px rgba(65, 105, 225, 0.5));
+        animation: bounce 2s ease-in-out infinite;
+    }
+
+    &__title-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    &__name {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #4169E1;
+        text-shadow: 0 0 10px rgba(65, 105, 225, 0.3);
+    }
+
+    &__id {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-family: 'Courier New', monospace;
+    }
+
+    // Status indicator
+    &__status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.4rem 0.75rem;
+        background: rgba(0, 255, 0, 0.1);
+        border: 1px solid rgba(0, 255, 0, 0.3);
+        border-radius: 20px;
+    }
+
+    &__status-indicator {
+        position: relative;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #00ff00;
+        box-shadow: 0 0 8px rgba(0, 255, 0, 0.6);
+    }
+
+    &__status-pulse {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: rgba(0, 255, 0, 0.4);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    &__status-text {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #00ff00;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    // Section styling
+    &__section {
+        margin-bottom: 1rem;
+
+        &--time {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        &--pnl {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+        }
+    }
+
+    &__label {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-bottom: 0.4rem;
+
+        &--net {
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    &__label-icon {
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+    &__label-text {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    &__value {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+
+        &--strategy {
+            color: #FFD700;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+        }
+
+        &--duration {
+            color: #4169E1;
+            font-family: 'Courier New', monospace;
+        }
+
+        &--profit {
+            color: #00ff00;
+            font-weight: 700;
+        }
+
+        &--loss {
+            color: #ff4444;
+            font-weight: 700;
+        }
+
+        &--net {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 0.5rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+        }
+
+        &--net-profit {
+            color: #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            box-shadow: 0 0 12px rgba(0, 255, 0, 0.2);
+        }
+
+        &--net-loss {
+            color: #ff4444;
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            box-shadow: 0 0 12px rgba(255, 68, 68, 0.2);
+        }
+
+        &--net-neutral {
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    }
+
+    // P&L grid
+    &__pnl-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    &__pnl-item {
+        // Individual P&L item styling
+    }
+
+    &__net-pnl {
+        // Net P&L container styling
+    }
+
+    // Time items
+    &__time-item {
+        // Individual time item styling
+    }
+
+    // Actions section
+    &__actions {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 2px solid rgba(65, 105, 225, 0.2);
+    }
+
+    &__stop-button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, rgba(255, 68, 68, 0.2) 0%, rgba(204, 0, 0, 0.2) 100%);
+        border: 2px solid rgba(255, 68, 68, 0.4);
+        border-radius: 12px;
+        color: #ff4444;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: linear-gradient(135deg, rgba(255, 68, 68, 0.3) 0%, rgba(204, 0, 0, 0.3) 100%);
+            border-color: rgba(255, 68, 68, 0.6);
+            box-shadow: 0 4px 16px rgba(255, 68, 68, 0.3);
+            transform: translateY(-2px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &__stop-icon {
+        font-size: 1.1rem;
+    }
+
+    &__stop-text {
+        // Stop button text styling
+    }
+
+    // Confirmation dialog
+    &__confirm-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        animation: fadeIn 0.2s ease;
+    }
+
+    &__confirm-dialog {
+        background: linear-gradient(135deg, #1a1f3a 0%, #0a0e27 100%);
+        border: 2px solid rgba(255, 68, 68, 0.4);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        animation: slideUp 0.2s ease;
+    }
+
+    &__confirm-icon {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    &__confirm-title {
+        margin: 0 0 1rem 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ff4444;
+        text-align: center;
+    }
+
+    &__confirm-message {
+        margin: 0 0 1.5rem 0;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.85);
+        text-align: center;
+        line-height: 1.5;
+
+        strong {
+            color: #4169E1;
+            font-weight: 700;
+        }
+    }
+
+    &__confirm-actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+    }
+
+    &__confirm-button {
+        padding: 0.75rem 1.5rem;
+        border: 2px solid;
+        border-radius: 10px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+
+        &--cancel {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.85);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.5);
+                transform: translateY(-2px);
+            }
+        }
+
+        &--confirm {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.4);
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(255, 68, 68, 0.6);
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+}
+
+// Animations
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+
+@keyframes electricPulse {
+    0%, 100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6));
+    }
+    50% {
+        opacity: 0.8;
+        filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.9));
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+// Mobile Responsive - Enhanced for Requirements 30.1-30.5
+@media (max-width: 768px) {
+    .running-bot-card {
+        padding: 1.25rem;
+
+        &__badge {
+            top: -8px;
+            right: 1rem;
+            padding: 0.4rem 0.8rem;
+        }
+
+        &__badge-icon {
+            font-size: 0.9rem;
+        }
+
+        &__badge-text {
+            font-size: 0.8rem;
+        }
+
+        &__header {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        &__icon {
+            font-size: 2rem;
+        }
+
+        &__name {
+            font-size: 1.1rem;
+        }
+
+        &__id {
+            font-size: 0.75rem;
+        }
+
+        &__status {
+            padding: 0.5rem 0.8rem;
+        }
+
+        &__status-text {
+            font-size: 0.8rem;
+        }
+
+        &__section {
+            margin-bottom: 1rem;
+
+            &--time {
+                gap: 1rem;
+            }
+
+            &--pnl {
+                padding: 1rem;
+            }
+        }
+
+        &__label-text {
+            font-size: 0.8rem;
+        }
+
+        &__value {
+            font-size: 0.95rem;
+
+            &--net {
+                font-size: 1.2rem;
+                padding: 0.75rem;
+            }
+        }
+
+        &__pnl-grid {
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        &__actions {
+            margin-top: 1rem;
+            padding-top: 1rem;
+        }
+
+        &__stop-button {
+            padding: 0.875rem 1.5rem;
+            font-size: 1rem;
+            min-height: 48px; // Touch target size
+
+            &:active {
+                transform: scale(0.97);
+            }
+        }
+
+        &__confirm-dialog {
+            padding: 2rem 1.5rem;
+            margin: 1rem;
+        }
+
+        &__confirm-icon {
+            font-size: 3rem;
+        }
+
+        &__confirm-title {
+            font-size: 1.4rem;
+        }
+
+        &__confirm-message {
+            font-size: 0.95rem;
+        }
+
+        &__confirm-actions {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        &__confirm-button {
+            width: 100%;
+            padding: 0.875rem 1.5rem;
+            min-height: 48px; // Touch target size
+
+            &:active {
+                transform: scale(0.97);
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .running-bot-card {
+        padding: 1rem;
+
+        &__badge {
+            top: -6px;
+            right: 0.75rem;
+            padding: 0.3rem 0.6rem;
+        }
+
+        &__badge-text {
+            font-size: 0.7rem;
+        }
+
+        &__header {
+            flex-direction: column;
+            gap: 1rem;
+            align-items: stretch;
+        }
+
+        &__title {
+            order: 1;
+        }
+
+        &__status {
+            order: 2;
+            align-self: flex-start;
+            padding: 0.4rem 0.7rem;
+        }
+
+        &__icon {
+            font-size: 1.75rem;
+        }
+
+        &__name {
+            font-size: 1rem;
+        }
+
+        &__section {
+            &--time {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            &--pnl {
+                padding: 0.875rem;
+            }
+        }
+
+        &__pnl-grid {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        &__value {
+            &--net {
+                font-size: 1.1rem;
+                padding: 0.6rem;
+            }
+        }
+
+        &__stop-button {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.95rem;
+            min-height: 44px;
+        }
+
+        &__confirm-dialog {
+            padding: 1.5rem 1rem;
+        }
+
+        &__confirm-title {
+            font-size: 1.25rem;
+        }
+
+        &__confirm-message {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+// Touch gesture support for mobile devices
+@media (hover: none) and (pointer: coarse) {
+    .running-bot-card {
+        &:active {
+            transform: scale(0.99);
+            transition: transform 0.1s ease;
+        }
+
+        &__stop-button {
+            min-height: 48px;
+            
+            &:active {
+                transform: scale(0.96);
+                transition: transform 0.1s ease;
+            }
+        }
+
+        &__confirm-button {
+            min-height: 48px;
+            
+            &:active {
+                transform: scale(0.96);
+                transition: transform 0.1s ease;
+            }
+        }
+
+        // Add swipe gesture visual feedback
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(65, 105, 225, 0.6), transparent);
+            transform: translateY(-50%);
+            transition: left 0.3s ease;
+        }
+
+        &:active::before {
+            left: 100%;
+        }
+    }
+}
+
+// Landscape orientation adjustments for mobile
+@media (max-width: 768px) and (orientation: landscape) {
+    .running-bot-card {
+        &__header {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        &__section {
+            &--time {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        &__pnl-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}

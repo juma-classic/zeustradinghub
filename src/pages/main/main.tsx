@@ -37,6 +37,10 @@ import { DCircles } from '@/components/dcircles/DCircles';
 // DTrader Component
 import DTraderIframe from '@/components/dtrader/DTraderIframe';
 
+// Auto Strategy Controller Components
+import ConditionDashboard from '@/components/auto-strategy/ConditionDashboard';
+import StrategyBuilder from '@/components/auto-strategy/StrategyBuilder';
+
 const DashboardIcon = () => (
     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
         <path d='M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z' fill='currentColor' />
@@ -384,6 +388,52 @@ const HacksAnalysisIcon = () => (
         <circle cx='5' cy='7' r='0.8' fill='#ffd700' />
         <circle cx='8' cy='10' r='0.8' fill='#ffd700' />
         <circle cx='5' cy='13' r='0.8' fill='#ffd700' />
+    </svg>
+);
+
+const AutoStrategyIcon = () => (
+    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        {/* Lightning bolt (automation symbol) */}
+        <path
+            d='M13 2L3 14h8l-1 8 10-12h-8l1-8z'
+            fill='#FFD700'
+            stroke='#FFD700'
+            strokeWidth='1'
+            strokeLinejoin='round'
+            opacity='0.9'
+        />
+        
+        {/* Gear/cog overlay (strategy symbol) */}
+        <circle cx='18' cy='6' r='3' fill='none' stroke='#4169E1' strokeWidth='1.5' opacity='0.8' />
+        <circle cx='18' cy='6' r='1.5' fill='#4169E1' opacity='0.6' />
+        
+        {/* Strategy condition indicators */}
+        <circle cx='6' cy='18' r='1.5' fill='#10b981' opacity='0.8' />
+        <circle cx='10' cy='16' r='1' fill='#ef4444' opacity='0.8' />
+        <circle cx='14' cy='20' r='1' fill='#f59e0b' opacity='0.8' />
+        
+        {/* Connection lines */}
+        <path d='M7.5 17L9 16.5M11 16L12.5 19' stroke='currentColor' strokeWidth='1' opacity='0.4' />
+    </svg>
+);
+
+const StrategyBuilderIcon = () => (
+    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        {/* Blueprint/design background */}
+        <rect x='3' y='3' width='18' height='18' rx='2' stroke='currentColor' strokeWidth='1.5' fill='none' opacity='0.3' />
+        
+        {/* Strategy flow diagram */}
+        <rect x='5' y='6' width='4' height='3' rx='0.5' fill='#10b981' opacity='0.8' />
+        <rect x='15' y='6' width='4' height='3' rx='0.5' fill='#ef4444' opacity='0.8' />
+        <rect x='10' y='15' width='4' height='3' rx='0.5' fill='#FFD700' opacity='0.8' />
+        
+        {/* Flow arrows */}
+        <path d='M9 7.5L15 7.5M17 9L12 15M12 15L7 7.5' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' opacity='0.6' />
+        
+        {/* Condition symbols */}
+        <circle cx='7' cy='7.5' r='0.8' fill='#fff' />
+        <circle cx='17' cy='7.5' r='0.8' fill='#fff' />
+        <circle cx='12' cy='16.5' r='0.8' fill='#000' />
     </svg>
 );
 
@@ -2006,6 +2056,8 @@ const AppWrapper = observer(() => {
         DBOT_TABS.ANALYSIS_TOOL,
         DBOT_TABS.SIGNALS,
         DBOT_TABS.X_SIGNALS,
+        DBOT_TABS.AUTO_STRATEGY,
+        DBOT_TABS.STRATEGY_BUILDER,
     ].includes(active_tab);
 
     return (
@@ -2032,6 +2084,37 @@ const AppWrapper = observer(() => {
                             <Dashboard handleTabChange={setActiveTab} />
                             <button onClick={handleOpen}>Load Bot</button>
                         </div>
+
+                        {/* AUTO STRATEGY CONTROLLER TAB */}
+                        <div
+                            label={
+                                <>
+                                    <AutoStrategyIcon />
+                                    <Localize i18n_default_text='Auto Strategy' />
+                                </>
+                            }
+                            id='id-auto-strategy'
+                        >
+                            <Suspense fallback={<ChunkLoader message={localize('Loading Auto Strategy Controller...')} />}>
+                                <ConditionDashboard />
+                            </Suspense>
+                        </div>
+
+                        {/* STRATEGY BUILDER TAB */}
+                        <div
+                            label={
+                                <>
+                                    <StrategyBuilderIcon />
+                                    <Localize i18n_default_text='Strategy Builder' />
+                                </>
+                            }
+                            id='id-strategy-builder'
+                        >
+                            <Suspense fallback={<ChunkLoader message={localize('Loading Strategy Builder...')} />}>
+                                <StrategyBuilder onSave={() => {}} onCancel={() => {}} />
+                            </Suspense>
+                        </div>
+
                         {/* BOT BUILDER TAB */}
                         <div
                             label={

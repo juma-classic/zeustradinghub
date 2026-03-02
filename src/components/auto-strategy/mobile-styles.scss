@@ -1,0 +1,366 @@
+/**
+ * Mobile Styles Import for Auto Strategy Controller
+ * 
+ * This file imports all mobile-responsive styles and gestures
+ * for the Auto Strategy Controller components.
+ */
+
+// Import mobile gesture utilities
+@import './mobile-gestures.scss';
+
+// Import Zeus theme variables
+@import './_zeus-theme.scss';
+
+// ============================================================================
+// Mobile-Specific Global Overrides
+// ============================================================================
+
+// Ensure all Auto Strategy components are mobile-ready
+.auto-strategy-controller {
+    // Mobile viewport optimization
+    @media (max-width: 768px) {
+        width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+    }
+
+    // Touch-friendly scrolling
+    * {
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    // Enhanced focus indicators for mobile
+    button:focus,
+    input:focus,
+    select:focus,
+    textarea:focus,
+    [tabindex]:focus {
+        outline: 3px solid rgba(255, 215, 0, 0.6);
+        outline-offset: 2px;
+    }
+
+    // Mobile-optimized text selection
+    ::selection {
+        background: rgba(255, 215, 0, 0.3);
+        color: #000;
+    }
+
+    ::-moz-selection {
+        background: rgba(255, 215, 0, 0.3);
+        color: #000;
+    }
+}
+
+// ============================================================================
+// Emergency Stop Mobile Enhancements
+// ============================================================================
+
+.emergency-stop-mobile-enhanced {
+    @media (max-width: 768px) {
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+        margin-bottom: 1.5rem;
+
+        .emergency-stop-button {
+            width: 100%;
+            min-height: 60px;
+            font-size: 1.1rem;
+            box-shadow: 
+                0 8px 24px rgba(255, 0, 0, 0.4),
+                0 0 40px rgba(255, 0, 0, 0.2);
+
+            &:active {
+                transform: scale(0.96);
+            }
+
+            // Haptic feedback simulation
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 0;
+                height: 0;
+                background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+                border-radius: 50%;
+                transition: all 0.2s ease;
+            }
+
+            &:active::before {
+                width: 200%;
+                height: 200%;
+            }
+        }
+    }
+}
+
+// ============================================================================
+// Critical Information Priority on Mobile
+// ============================================================================
+
+.mobile-priority-info {
+    @media (max-width: 768px) {
+        // Prioritize active strategies
+        .dashboard-section--strategies {
+            order: 1;
+        }
+
+        // Prioritize running bots
+        .dashboard-section--running-bots {
+            order: 2;
+        }
+
+        // Prioritize current P&L
+        .dashboard-section--performance {
+            order: 3;
+            
+            .performance-metrics__net-section {
+                background: rgba(255, 215, 0, 0.1);
+                border: 2px solid rgba(255, 215, 0, 0.3);
+                margin-bottom: 1rem;
+            }
+        }
+
+        // Lower priority for audit log
+        .dashboard-section--audit {
+            order: 4;
+        }
+    }
+}
+
+// ============================================================================
+// Swipe Gesture Enhancements
+// ============================================================================
+
+.swipe-enhanced {
+    @media (hover: none) and (pointer: coarse) {
+        // Strategy cards swipe to pause/resume
+        .strategy-card {
+            position: relative;
+            
+            &::after {
+                content: '← Swipe to pause/resume';
+                position: absolute;
+                top: 50%;
+                right: -200px;
+                transform: translateY(-50%);
+                padding: 0.5rem 1rem;
+                background: rgba(255, 215, 0, 0.9);
+                color: #000;
+                font-size: 0.8rem;
+                font-weight: 600;
+                border-radius: 20px;
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+                white-space: nowrap;
+            }
+
+            &:active::after {
+                right: 1rem;
+                opacity: 1;
+            }
+        }
+
+        // Running bot cards swipe to stop
+        .running-bot-card {
+            position: relative;
+            
+            &::after {
+                content: '← Swipe to stop';
+                position: absolute;
+                top: 50%;
+                right: -150px;
+                transform: translateY(-50%);
+                padding: 0.5rem 1rem;
+                background: rgba(255, 68, 68, 0.9);
+                color: #fff;
+                font-size: 0.8rem;
+                font-weight: 600;
+                border-radius: 20px;
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+                white-space: nowrap;
+            }
+
+            &:active::after {
+                right: 1rem;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+// ============================================================================
+// Mobile Loading States
+// ============================================================================
+
+.mobile-loading-optimized {
+    @media (max-width: 768px) {
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border-width: 3px;
+        }
+
+        .loading-text {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        // Skeleton loading for better perceived performance
+        .skeleton-loader {
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.1) 25%, 
+                rgba(255, 215, 0, 0.1) 50%, 
+                rgba(255, 255, 255, 0.1) 75%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 8px;
+            height: 20px;
+            margin-bottom: 0.5rem;
+
+            &--title {
+                height: 24px;
+                width: 60%;
+            }
+
+            &--text {
+                height: 16px;
+                width: 80%;
+            }
+
+            &--button {
+                height: 44px;
+                width: 100%;
+                border-radius: 12px;
+            }
+        }
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+// ============================================================================
+// Mobile Error States
+// ============================================================================
+
+.mobile-error-optimized {
+    @media (max-width: 768px) {
+        .error-message {
+            padding: 1rem;
+            margin: 1rem 0;
+            background: rgba(255, 68, 68, 0.1);
+            border: 2px solid rgba(255, 68, 68, 0.3);
+            border-radius: 12px;
+            text-align: center;
+
+            &__icon {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            &__title {
+                font-size: 1.1rem;
+                font-weight: 700;
+                color: #ff4444;
+                margin-bottom: 0.5rem;
+            }
+
+            &__text {
+                font-size: 0.9rem;
+                color: rgba(255, 255, 255, 0.8);
+                line-height: 1.4;
+            }
+
+            &__retry {
+                @extend .zeus-touch-button;
+                margin-top: 1rem;
+                width: 100%;
+            }
+        }
+    }
+}
+
+// ============================================================================
+// Mobile Accessibility Enhancements
+// ============================================================================
+
+.mobile-a11y-enhanced {
+    // High contrast mode
+    @media (prefers-contrast: high) {
+        .strategy-card,
+        .running-bot-card,
+        .dashboard-section {
+            border-width: 3px;
+            border-color: #FFD700;
+        }
+
+        .emergency-stop-button {
+            border-width: 4px;
+            box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.5);
+        }
+    }
+
+    // Reduced motion
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    // Large text support
+    @media (min-resolution: 192dpi) {
+        .strategy-card__name,
+        .running-bot-card__name,
+        .dashboard-section__title {
+            font-weight: 600; // Slightly bolder on high DPI
+        }
+    }
+}
+
+// ============================================================================
+// Mobile Performance Optimizations
+// ============================================================================
+
+.mobile-performance-optimized {
+    @media (max-width: 768px) {
+        // Reduce complex animations on mobile
+        .condition-indicator,
+        .emergency-stop-button__icon,
+        .dashboard-section__icon {
+            animation-duration: 3s; // Slower animations
+        }
+
+        // Optimize transforms for better performance
+        .strategy-card,
+        .running-bot-card {
+            will-change: transform;
+            transform: translateZ(0); // Force hardware acceleration
+        }
+
+        // Reduce backdrop blur on lower-end devices
+        @supports not (backdrop-filter: blur(10px)) {
+            .dashboard-section,
+            .strategy-card,
+            .running-bot-card {
+                backdrop-filter: none;
+                background: rgba(255, 255, 255, 0.08);
+            }
+        }
+    }
+}

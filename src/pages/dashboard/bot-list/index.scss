@@ -458,6 +458,10 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 word-break: break-all;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
             }
 
             @include mobile-or-tablet-screen {

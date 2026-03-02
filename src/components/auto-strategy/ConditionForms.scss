@@ -1,0 +1,266 @@
+/**
+ * Condition Forms Styles
+ * Zeus Theme: Gold (#FFD700) and Electric Blue (#4169E1)
+ */
+
+@import './zeus-theme';
+
+.condition-form {
+    &__field {
+        margin-bottom: 1.5rem;
+
+        &:last-of-type {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: $font-size-md;
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+    }
+
+    &__select {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: $font-size-md;
+        border: 2px solid $border-white;
+        border-radius: $radius-md;
+        background: rgba(0, 0, 0, 0.3);
+        color: $text-primary;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+            border-color: $border-blue-hover;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $zeus-gold;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        option {
+            background: #1a1a1a;
+            color: $text-primary;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: $font-size-md;
+        border: 2px solid $border-white;
+        border-radius: $radius-md;
+        background: rgba(0, 0, 0, 0.3);
+        color: $text-primary;
+        transition: all $transition-fast;
+
+        &:hover {
+            border-color: $border-blue-hover;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $zeus-gold;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        &::placeholder {
+            color: $text-tertiary;
+        }
+    }
+
+    &__digit-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    &__digit-button {
+        padding: 1.5rem;
+        font-size: 1.8rem;
+        font-weight: $font-weight-bold;
+        border: 2px solid $border-white;
+        border-radius: $radius-lg;
+        background: $bg-card;
+        color: $text-primary;
+        cursor: pointer;
+        transition: all $transition-normal;
+        position: relative;
+        overflow: hidden;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+        }
+
+        &:hover {
+            border-color: $border-blue-hover;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(65, 105, 225, 0.2);
+
+            &:before {
+                width: 200%;
+                height: 200%;
+            }
+        }
+
+        &--active {
+            background: $gradient-blue;
+            border-color: $zeus-gold;
+            color: $zeus-gold;
+            box-shadow: 0 4px 16px rgba(65, 105, 225, 0.4);
+            text-shadow: $shadow-gold;
+            animation: digitPulse 2s ease-in-out infinite;
+        }
+    }
+
+    &__checkbox-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    &__checkbox {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        border: 2px solid $border-white;
+        border-radius: $radius-md;
+        background: $bg-section;
+        cursor: pointer;
+        transition: all $transition-fast;
+
+        &:hover {
+            border-color: $border-blue-hover;
+            background: $bg-card;
+        }
+
+        &--checked {
+            border-color: $zeus-gold;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        input[type="checkbox"] {
+            width: 1.5rem;
+            height: 1.5rem;
+            cursor: pointer;
+            accent-color: $zeus-gold;
+        }
+
+        label {
+            font-size: $font-size-md;
+            color: $text-primary;
+            cursor: pointer;
+            flex: 1;
+        }
+    }
+
+    &__hint {
+        margin-top: 0.5rem;
+        font-size: $font-size-sm;
+        color: $text-tertiary;
+        font-style: italic;
+        line-height: 1.4;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 2px solid $border-white;
+    }
+
+    &__button {
+        @include zeus-button('blue');
+
+        &--primary {
+            @include zeus-button('gold');
+        }
+
+        &--cancel {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: $border-white-hover;
+            color: $text-secondary;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+                border-color: $border-white;
+            }
+        }
+    }
+}
+
+@keyframes digitPulse {
+    0%, 100% {
+        box-shadow: 0 4px 16px rgba(65, 105, 225, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 24px rgba(65, 105, 225, 0.6);
+    }
+}
+
+// Mobile responsive
+@media (max-width: 768px) {
+    .condition-form {
+        &__digit-grid {
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+        }
+
+        &__digit-button {
+            padding: 1rem;
+            font-size: 1.6rem;
+        }
+
+        &__checkbox-grid {
+            grid-template-columns: 1fr;
+        }
+
+        &__actions {
+            flex-direction: column;
+
+            button {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .condition-form {
+        &__digit-grid {
+            gap: 0.4rem;
+        }
+
+        &__digit-button {
+            padding: 0.875rem;
+            font-size: 1.4rem;
+        }
+    }
+}
+
+// Touch gesture support
+@include touch-support {
+    .condition-form__digit-button {
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}
