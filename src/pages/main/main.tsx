@@ -437,6 +437,36 @@ const StrategyBuilderIcon = () => (
     </svg>
 );
 
+const StrategyMonitorIcon = () => (
+    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        {/* Monitor screen */}
+        <rect x='2' y='3' width='20' height='14' rx='2' stroke='currentColor' strokeWidth='1.5' fill='none' opacity='0.3' />
+        
+        {/* Real-time graph line */}
+        <path 
+            d='M5 10L8 7L11 11L14 8L17 12L20 9' 
+            stroke='#10b981' 
+            strokeWidth='2' 
+            strokeLinecap='round' 
+            strokeLinejoin='round'
+            opacity='0.9'
+        />
+        
+        {/* Data points */}
+        <circle cx='8' cy='7' r='1.5' fill='#10b981' />
+        <circle cx='14' cy='8' r='1.5' fill='#FFD700' />
+        <circle cx='20' cy='9' r='1.5' fill='#4169E1' />
+        
+        {/* Monitor stand */}
+        <path d='M10 17L14 17M12 17L12 21M9 21L15 21' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' />
+        
+        {/* Status indicator */}
+        <circle cx='19' cy='5' r='1.5' fill='#10b981' opacity='0.9'>
+            <animate attributeName='opacity' values='0.5;1;0.5' dur='2s' repeatCount='indefinite' />
+        </circle>
+    </svg>
+);
+
 const AppWrapper = observer(() => {
     const { connectionStatus } = useApiBase();
     const { dashboard, load_modal, run_panel, summary_card } = useStore();
@@ -2058,6 +2088,7 @@ const AppWrapper = observer(() => {
         DBOT_TABS.X_SIGNALS,
         DBOT_TABS.AUTO_STRATEGY,
         DBOT_TABS.STRATEGY_BUILDER,
+        DBOT_TABS.STRATEGY_MONITOR,
     ].includes(active_tab);
 
     return (
@@ -2111,7 +2142,33 @@ const AppWrapper = observer(() => {
                             id='id-strategy-builder'
                         >
                             <Suspense fallback={<ChunkLoader message={localize('Loading Strategy Builder...')} />}>
-                                <StrategyBuilder onSave={() => {}} onCancel={() => {}} />
+                                <StrategyBuilder 
+                                    onSave={(strategyId) => {
+                                        console.log('Strategy created:', strategyId);
+                                        // Switch to Strategy Monitor tab
+                                        setActiveTab(DBOT_TABS.STRATEGY_MONITOR);
+                                        // TODO: Show success notification
+                                    }} 
+                                    onCancel={() => {
+                                        // Switch back to Strategy Monitor tab
+                                        setActiveTab(DBOT_TABS.STRATEGY_MONITOR);
+                                    }} 
+                                />
+                            </Suspense>
+                        </div>
+
+                        {/* STRATEGY MONITOR TAB */}
+                        <div
+                            label={
+                                <>
+                                    <StrategyMonitorIcon />
+                                    <Localize i18n_default_text='Strategy Monitor' />
+                                </>
+                            }
+                            id='id-strategy-monitor'
+                        >
+                            <Suspense fallback={<ChunkLoader message={localize('Loading Strategy Monitor...')} />}>
+                                <ConditionDashboard />
                             </Suspense>
                         </div>
 
