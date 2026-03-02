@@ -35,6 +35,18 @@ export default defineConfig({
         bundleAnalyze: process.env.BUNDLE_ANALYZE ? {} : undefined,
         chunkLoadTimeout: 60000, // 60 seconds timeout for chunk loading
     },
+    resolve: {
+        alias: {
+            react: path.resolve('./node_modules/react'),
+            'react-dom': path.resolve('./node_modules/react-dom'),
+            '@/external': path.resolve(__dirname, './src/external'),
+            '@/components': path.resolve(__dirname, './src/components'),
+            '@/hooks': path.resolve(__dirname, './src/hooks'),
+            '@/utils': path.resolve(__dirname, './src/utils'),
+            '@/constants': path.resolve(__dirname, './src/constants'),
+            '@/stores': path.resolve(__dirname, './src/stores'),
+        },
+    },
     source: {
         entry: {
             index: './src/main.tsx',
@@ -61,16 +73,6 @@ export default defineConfig({
                 GROWTHBOOK_DECRYPTION_KEY: JSON.stringify(process.env.GROWTHBOOK_DECRYPTION_KEY),
             },
         },
-        alias: {
-            react: path.resolve('./node_modules/react'),
-            'react-dom': path.resolve('./node_modules/react-dom'),
-            '@/external': path.resolve(__dirname, './src/external'),
-            '@/components': path.resolve(__dirname, './src/components'),
-            '@/hooks': path.resolve(__dirname, './src/hooks'),
-            '@/utils': path.resolve(__dirname, './src/utils'),
-            '@/constants': path.resolve(__dirname, './src/constants'),
-            '@/stores': path.resolve(__dirname, './src/stores'),
-        },
     },
     output: {
         copy: [
@@ -86,8 +88,12 @@ export default defineConfig({
             { from: 'node_modules/@deriv/deriv-charts/dist/chart/assets/shaders/*', to: 'assets/shaders/[name][ext]' },
             { 
                 from: path.join(__dirname, 'public'),
+                to: './',
                 noErrorOnMissing: true,
-                info: { minimized: false }, // Don't minify copied files
+                info: { minimized: true }, // Mark as already minimized to skip processing
+                globOptions: {
+                    ignore: [],
+                },
             },
         ],
         cleanDistPath: true,
@@ -109,6 +115,9 @@ export default defineConfig({
     dev: {
         hmr: true,
         liveReload: true,
+        client: {
+            webSocketURL: 'auto://0.0.0.0:0/ws',
+        },
     },
     tools: {
         rspack: {
@@ -126,14 +135,6 @@ export default defineConfig({
                         test: /\.xml$/,
                         exclude: /node_modules/,
                         use: 'raw-loader',
-                    },
-                    {
-                        // Exclude app.binarytool.site JS files from processing
-                        test: /app\.binarytool\.site.*\.js$/,
-                        type: 'asset/resource',
-                        generator: {
-                            filename: '[path][name][ext]',
-                        },
                     },
                 ],
             },
@@ -162,11 +163,6 @@ export default defineConfig({
             },
             experiments: {
                 asyncWebAssembly: true,
-            },
-            devServer: {
-                client: {
-                    webSocketURL: 'auto://0.0.0.0:0/ws',
-                },
             },
         },
     },
